@@ -1,0 +1,121 @@
+body {
+  font-family: "Poppins", sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 130%;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body .sbdocs {
+  max-width: none;
+  max-width: initial;
+}
+
+.react-transform-wrapper {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+body td > pre.prism-code {
+  background: transparent !important;
+  overflow: auto;
+}
+
+.props-table {
+  width: 100%;
+}
+
+.props-table th {
+  text-align: left;
+}
+
+.is-object-row td {
+  background: #d8e2f5;
+  border-top: 2px solid rgb(173 173 173) !important;
+}
+
+.react-transform-wrapper {
+  max-width: 80vw;
+  max-height: 80vh;
+}
+
+.handlers-table {
+  width: 100%;
+}
+
+.handlers-table th {
+  text-align: left;
+}
+
+.styles_controlBtn__0MzSB {
+  background: white;
+  border-radius: 5px;
+  border: 1px solid grey;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+  margin-right: 10px;
+  padding: 6px 12px;
+  text-transform: uppercase;
+}
+
+.styles_controlBtn__0MzSB:active {
+  opacity: 0.9;
+}
+
+.styles_controlBtn__0MzSB:focus {
+  filter: brightness(90%);
+}
+
+.styles_controlBtn__0MzSB:hover {
+  filter: brightness(120%);
+}
+
+.styles_controlPanel__TPBuk {
+  max-width: calc(100% - 20px);
+  position: absolute;
+  transform: translate(10px, 10px);
+  z-index: 2;
+}
+
+.transform-component_content__qCWBw {
+  display: flex;
+  flex-wrap: wrap;
+  height: -moz-fit-content;
+  height: -webkit-fit-content;
+  height: fit-content;
+  margin: 0;
+  padding: 0;
+  transform-origin: 0% 0%;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+  width: fit-content;
+}
+
+.transform-component_content__qCWBw img {
+  pointer-events: none;
+}
+
+.transform-component_wrapper__KpIt1 {
+  height: -moz-fit-content;
+  height: -webkit-fit-content;
+  height: fit-content;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  user-select: none;
+  width: -moz-fit-content;
+  width: -webkit-fit-content;
+  width: fit-content;
+}
+
+
+/*# sourceMappingURL=main.a60df612.css.map*/
