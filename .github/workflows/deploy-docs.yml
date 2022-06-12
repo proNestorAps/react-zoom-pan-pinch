@@ -29,6 +29,6 @@ jobs:
 
       - name: Deploy Storybook
         uses: JamesIves/github-pages-deploy-action@v4.3.3
-        width:
+        with:
           branch: gh-pages
           folder: storybook-static
