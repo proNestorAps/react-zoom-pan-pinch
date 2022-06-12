@@ -1,33 +1,24 @@
 # @pronestor/react-zoom-pan-pinch
 
-This is a fork of
-[react-zoom-pan-pinch](https://github.com/prc5/react-zoom-pan-pinch) created in
-order to fix
-[the issue with build errors because of missing source files](https://github.com/prc5/react-zoom-pan-pinch/issues/265).
+Super fast and light react Node.js package for zooming, panning and pinching html elements in easy way.
 
-## Features
+This is a fork of [react-zoom-pan-pinch](https://github.com/prc5/react-zoom-pan-pinch) created in order to fix [the issue with build errors because of missing source files](https://github.com/prc5/react-zoom-pan-pinch/issues/265).
 
-Super fast and light react npm package for zooming, panning and pinching html
-elements in easy way.
+## Installation
 
-- :rocket: Fast and easy to use
-- :factory: Light, without external dependencies
-- :gem: Mobile gestures, touch gestures and desktop mouse events support
-- :gift: Powerful context usage, which gives you a lot of freedom
-- :wrench: Highly customizable
-- :crown: Animations and Utils to create own tools
-
-## Install
-
-```bash
+```shell
 yarn add @pronestor/react-zoom-pan-pinch
 ```
 
 or
 
-```bash
+```shell
 npm install --save @pronestor/react-zoom-pan-pinch
 ```
+
+## Documentation
+
+[Storybook for `@pronestor/react-zoom-pan-pinch`](https://pronestoraps.github.io/react-zoom-pan-pinch/).
 
 ## Usage
 
@@ -37,7 +28,7 @@ import {
   TransformComponent,
 } from "@pronestor/react-zoom-pan-pinch";
 
-export const Example = () => (
+export const SimpleExample = () => (
   <TransformWrapper>
     <TransformComponent>
       <img src="image.jpg" alt="test" />
@@ -54,18 +45,17 @@ import {
   TransformComponent,
 } from "@pronestor/react-zoom-pan-pinch";
 
-export const Example = () => (
+export const ExampleWithZoomControls = () => (
   <TransformWrapper
     initialScale={1}
     initialPositionX={200}
     initialPositionY={100}
   >
-    {({ zoomIn, zoomOut, resetTransform, ...rest }) => (
+    {({ zoomIn, zoomOut, ...rest }) => (
       <>
         <div className="tools">
           <button onClick={() => zoomIn()}>+</button>
           <button onClick={() => zoomOut()}>-</button>
-          <button onClick={() => resetTransform()}>x</button>
         </div>
         <TransformComponent>
           <img src="image.jpg" alt="test" />
