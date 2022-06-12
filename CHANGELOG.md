@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Version 2.2.1
+## Version 2.2.2
 
 - Publish the Storybook documentation. It's available at [pronestoraps.github.io/react-zoom-pan-pinch](https://pronestoraps.github.io/react-zoom-pan-pinch/).
 - Update some dependencies.
