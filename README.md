@@ -20,13 +20,14 @@ or
 npm install @pronestor/react-zoom-pan-pinch
 ```
 
+### Usage
 
-## Usage
+Basic usage:
 
 ```jsx
 import {
-  TransformWrapper,
   TransformComponent,
+  TransformWrapper,
 } from "@pronestor/react-zoom-pan-pinch";
 
 export const SimpleExample = () => (
@@ -38,19 +39,19 @@ export const SimpleExample = () => (
 );
 ```
 
-or
+With controls:
 
 ```jsx
 import {
-  TransformWrapper,
   TransformComponent,
+  TransformWrapper,
 } from "@pronestor/react-zoom-pan-pinch";
 
 export const ExampleWithZoomControls = () => (
   <TransformWrapper
-    initialScale={1}
     initialPositionX={200}
     initialPositionY={100}
+    initialScale={1}
   >
     {({ zoomIn, zoomOut, ...rest }) => (
       <>
