@@ -2,9 +2,15 @@
 
 Super fast and light react Node.js package for zooming, panning and pinching html elements in easy way.
 
-This is a fork of [react-zoom-pan-pinch](https://github.com/prc5/react-zoom-pan-pinch) created in order to fix [the issue with build errors because of missing source files](https://github.com/prc5/react-zoom-pan-pinch/issues/265).
+This is a fork of [react-zoom-pan-pinch](https://github.com/prc5/react-zoom-pan-pinch) originally created in order to fix [the issue with build errors because of missing source files](https://github.com/prc5/react-zoom-pan-pinch/issues/265).
 
-## Installation
+## Documentation
+
+[Storybook for `@pronestor/react-zoom-pan-pinch`](https://pronestoraps.github.io/react-zoom-pan-pinch/).
+
+## Quick Start
+
+### Installation
 
 ```shell
 yarn add @pronestor/react-zoom-pan-pinch
@@ -13,19 +19,17 @@ yarn add @pronestor/react-zoom-pan-pinch
 or
 
 ```shell
-npm install --save @pronestor/react-zoom-pan-pinch
+npm install @pronestor/react-zoom-pan-pinch
 ```
 
-## Documentation
+### Usage
 
-[Storybook for `@pronestor/react-zoom-pan-pinch`](https://pronestoraps.github.io/react-zoom-pan-pinch/).
-
-## Usage
+Basic usage:
 
 ```jsx
 import {
-  TransformWrapper,
   TransformComponent,
+  TransformWrapper,
 } from "@pronestor/react-zoom-pan-pinch";
 
 export const SimpleExample = () => (
@@ -37,19 +41,19 @@ export const SimpleExample = () => (
 );
 ```
 
-or
+With controls:
 
 ```jsx
 import {
-  TransformWrapper,
   TransformComponent,
+  TransformWrapper,
 } from "@pronestor/react-zoom-pan-pinch";
 
 export const ExampleWithZoomControls = () => (
   <TransformWrapper
-    initialScale={1}
     initialPositionX={200}
     initialPositionY={100}
+    initialScale={1}
   >
     {({ zoomIn, zoomOut, ...rest }) => (
       <>
