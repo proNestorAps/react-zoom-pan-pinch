@@ -13,7 +13,7 @@ yarn add @pronestor/react-zoom-pan-pinch
 or
 
 ```shell
-npm install --save @pronestor/react-zoom-pan-pinch
+npm install @pronestor/react-zoom-pan-pinch
 ```
 
 ## Documentation
