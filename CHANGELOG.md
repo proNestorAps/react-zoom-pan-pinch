@@ -1,7 +1,8 @@
 # CHANGELOG
 
-## Unreleased
+## Version 2.3.0
 
+- Add support for React 18.
 - Rename the default branch to `main`.
 - Update the readme.
 
