@@ -2,7 +2,7 @@
 
 Super fast and light react Node.js package for zooming, panning and pinching html elements in easy way.
 
-This is a fork of [react-zoom-pan-pinch](https://github.com/prc5/react-zoom-pan-pinch) created in order to fix [the issue with build errors because of missing source files](https://github.com/prc5/react-zoom-pan-pinch/issues/265).
+This is a fork of [react-zoom-pan-pinch](https://github.com/prc5/react-zoom-pan-pinch) originally created in order to fix [the issue with build errors because of missing source files](https://github.com/prc5/react-zoom-pan-pinch/issues/265).
 
 ## Documentation
 
