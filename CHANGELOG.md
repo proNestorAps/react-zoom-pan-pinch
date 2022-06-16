@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Rename the default branch to `main`.
 - Update the readme.
 
 ## Version 2.2.2
