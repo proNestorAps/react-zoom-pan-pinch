@@ -8,6 +8,8 @@ This is a fork of [react-zoom-pan-pinch](https://github.com/prc5/react-zoom-pan-
 
 [Storybook for `@pronestor/react-zoom-pan-pinch`](https://pronestoraps.github.io/react-zoom-pan-pinch/).
 
+## Quick Start
+
 ### Installation
 
 ```shell
