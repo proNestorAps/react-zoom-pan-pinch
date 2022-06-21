@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Unreleased
+
+- Update dependencies.
+
 ## Version 2.3.0
 
 - Add support for React 18.
