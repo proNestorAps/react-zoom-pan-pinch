@@ -5,6 +5,7 @@
   },
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
+  "jest.showTerminalOnLaunch": false,
   "search.exclude": {
     "yarn.lock": true
   }
