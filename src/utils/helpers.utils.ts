@@ -1,6 +1,6 @@
 export const isExcludedNode = (
   node: HTMLElement,
-  excluded: string[],
+  excluded: Array<string>,
 ): boolean => {
   const targetTagName = node.tagName.toUpperCase();
   const isExcludedTag = excluded.find(

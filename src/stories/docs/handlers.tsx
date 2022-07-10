@@ -3,8 +3,8 @@ import { ReactZoomPanPinchHandlers } from "../../models/context.model";
 
 export type ControlsFnOptionsType = {
   name: React.ReactNode;
-  type: string[];
-  parameters: string[];
+  type: Array<string>;
+  parameters: Array<string>;
   description: string;
   isObjectRow?: boolean;
 };
@@ -15,8 +15,8 @@ export type ComponentProps = Record<
   | Record<string, Omit<ControlsFnOptionsType, "name" | "isObjectRow">>
 >;
 
-export const getHandlersTable = (): ControlsFnOptionsType[] => {
-  return Object.keys(handlersTable).reduce<ControlsFnOptionsType[]>(
+export const getHandlersTable = (): Array<ControlsFnOptionsType> => {
+  return Object.keys(handlersTable).reduce<Array<ControlsFnOptionsType>>(
     (acc, key) => {
       if (Array.isArray(handlersTable[key]?.type)) {
         acc.push({

@@ -323,12 +323,13 @@ class TransformContext extends Component<
       return;
     }
 
-    const isDoubleTap = this.lastTouch && +new Date() - this.lastTouch < 200;
+    const isDoubleTap =
+      this.lastTouch && new Date().valueOf() - this.lastTouch < 200;
 
     if (isDoubleTap && event.touches.length === 1) {
       this.onDoubleClick(event);
     } else {
-      this.lastTouch = +new Date();
+      this.lastTouch = new Date().valueOf();
 
       handleCancelAnimation(this);
 
@@ -414,7 +415,7 @@ class TransformContext extends Component<
     this.pressedKeys[e.key] = false;
   };
 
-  isPressingKeys = (keys: string[]): boolean => {
+  isPressingKeys = (keys: Array<string>): boolean => {
     if (!keys.length) {
       return true;
     }
