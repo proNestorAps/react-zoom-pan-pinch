@@ -169,13 +169,19 @@ class TransformContext extends Component<
 
   onWheelZoom = (event: WheelEvent): void => {
     const { disabled } = this.setup;
-    if (disabled) return;
+    if (disabled) {
+      return;
+    }
 
     const isAllowed = isWheelAllowed(this, event);
-    if (!isAllowed) return;
+    if (!isAllowed) {
+      return;
+    }
 
     const keysPressed = this.isPressingKeys(this.setup.wheel.activationKeys);
-    if (!keysPressed) return;
+    if (!keysPressed) {
+      return;
+    }
 
     handleWheelStart(this, event);
     handleWheelZoom(this, event);
@@ -189,13 +195,19 @@ class TransformContext extends Component<
   onPanningStart = (event: MouseEvent): void => {
     const { disabled } = this.setup;
     const { onPanningStart } = this.props;
-    if (disabled) return;
+    if (disabled) {
+      return;
+    }
 
     const isAllowed = isPanningStartAllowed(this, event);
-    if (!isAllowed) return;
+    if (!isAllowed) {
+      return;
+    }
 
     const keysPressed = this.isPressingKeys(this.setup.panning.activationKeys);
-    if (!keysPressed) return;
+    if (!keysPressed) {
+      return;
+    }
 
     event.preventDefault();
     event.stopPropagation();
@@ -209,13 +221,19 @@ class TransformContext extends Component<
     const { disabled } = this.setup;
     const { onPanning } = this.props;
 
-    if (disabled) return;
+    if (disabled) {
+      return;
+    }
 
     const isAllowed = isPanningAllowed(this);
-    if (!isAllowed) return;
+    if (!isAllowed) {
+      return;
+    }
 
     const keysPressed = this.isPressingKeys(this.setup.panning.activationKeys);
-    if (!keysPressed) return;
+    if (!keysPressed) {
+      return;
+    }
 
     event.preventDefault();
     event.stopPropagation();
@@ -241,10 +259,14 @@ class TransformContext extends Component<
     const { disabled } = this.setup;
     const { onPinchingStart, onZoomStart } = this.props;
 
-    if (disabled) return;
+    if (disabled) {
+      return;
+    }
 
     const isAllowed = isPinchStartAllowed(this, event);
-    if (!isAllowed) return;
+    if (!isAllowed) {
+      return;
+    }
 
     handlePinchStart(this, event);
     handleCancelAnimation(this);
@@ -256,10 +278,14 @@ class TransformContext extends Component<
     const { disabled } = this.setup;
     const { onPinching, onZoom } = this.props;
 
-    if (disabled) return;
+    if (disabled) {
+      return;
+    }
 
     const isAllowed = isPinchAllowed(this);
-    if (!isAllowed) return;
+    if (!isAllowed) {
+      return;
+    }
 
     event.preventDefault();
     event.stopPropagation();
@@ -287,11 +313,15 @@ class TransformContext extends Component<
     const { disabled } = this.setup;
     const { onPanningStart } = this.props;
 
-    if (disabled) return;
+    if (disabled) {
+      return;
+    }
 
     const isAllowed = isPanningStartAllowed(this, event);
 
-    if (!isAllowed) return;
+    if (!isAllowed) {
+      return;
+    }
 
     const isDoubleTap = this.lastTouch && +new Date() - this.lastTouch < 200;
 
@@ -323,10 +353,14 @@ class TransformContext extends Component<
     const { onPanning } = this.props;
 
     if (this.isPanning && event.touches.length === 1) {
-      if (disabled) return;
+      if (disabled) {
+        return;
+      }
 
       const isAllowed = isPanningAllowed(this);
-      if (!isAllowed) return;
+      if (!isAllowed) {
+        return;
+      }
 
       event.preventDefault();
       event.stopPropagation();
@@ -350,10 +384,14 @@ class TransformContext extends Component<
 
   onDoubleClick = (event: MouseEvent | TouchEvent): void => {
     const { disabled } = this.setup;
-    if (disabled) return;
+    if (disabled) {
+      return;
+    }
 
     const isAllowed = isDoubleClickAllowed(this, event);
-    if (!isAllowed) return;
+    if (!isAllowed) {
+      return;
+    }
 
     handleDoubleClick(this, event);
   };
@@ -432,7 +470,9 @@ class TransformContext extends Component<
   };
 
   applyTransformation = (): void => {
-    if (!this.mounted || !this.contentComponent) return;
+    if (!this.mounted || !this.contentComponent) {
+      return;
+    }
     const { scale, positionX, positionY } = this.transformState;
     const transform = getTransformStyles(positionX, positionY, scale);
     this.contentComponent.style.transform = transform;

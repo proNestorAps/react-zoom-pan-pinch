@@ -18,11 +18,15 @@ export const isPanningStartAllowed = (
   const isWrapperChild = wrapperComponent?.contains(target);
   const isAllowed = isInitialized && target && isWrapperChild;
 
-  if (!isAllowed) return false;
+  if (!isAllowed) {
+    return false;
+  }
 
   const isExcluded = isExcludedNode(target, excluded);
 
-  if (isExcluded) return false;
+  if (isExcluded) {
+    return false;
+  }
 
   return true;
 };
@@ -35,7 +39,9 @@ export const isPanningAllowed = (
 
   const isAllowed = isInitialized && isPanning && !disabled;
 
-  if (!isAllowed) return false;
+  if (!isAllowed) {
+    return false;
+  }
 
   return true;
 };
@@ -79,7 +85,9 @@ export function handlePanToBounds(
   const { disabled, limitToBounds, centerZoomedOut } = contextInstance.setup;
   const { wrapperComponent } = contextInstance;
 
-  if (disabled || !wrapperComponent || !contextInstance.bounds) return;
+  if (disabled || !wrapperComponent || !contextInstance.bounds) {
+    return;
+  }
 
   const { maxPositionX, minPositionX, maxPositionY, minPositionY } =
     contextInstance.bounds;
@@ -120,7 +128,9 @@ export function handlePaddingAnimation(
   const { scale } = contextInstance.transformState;
   const { sizeX, sizeY } = contextInstance.setup.alignmentAnimation;
 
-  if (!sizeX && !sizeY) return;
+  if (!sizeX && !sizeY) {
+    return;
+  }
 
   contextInstance.setTransformState(scale, positionX, positionY);
 }

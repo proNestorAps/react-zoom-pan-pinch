@@ -34,17 +34,23 @@ export const handlePinchZoom = (
   const { disabled, size } = zoomAnimation;
 
   // if one finger starts from outside of wrapper
-  if (pinchStartDistance === null || !contentComponent) return;
+  if (pinchStartDistance === null || !contentComponent) {
+    return;
+  }
 
   const midPoint = calculateTouchMidPoint(event, scale, contentComponent);
 
   // if touches goes off of the wrapper element
-  if (!isFinite(midPoint.x) || !isFinite(midPoint.y)) return;
+  if (!isFinite(midPoint.x) || !isFinite(midPoint.y)) {
+    return;
+  }
 
   const currentDistance = getTouchDistance(event);
   const newScale = calculatePinchZoom(contextInstance, currentDistance);
 
-  if (newScale === scale) return;
+  if (newScale === scale) {
+    return;
+  }
 
   const bounds = handleCalculateBounds(contextInstance, newScale);
 

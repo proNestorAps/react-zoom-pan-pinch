@@ -54,7 +54,9 @@ export const setTransform =
     const { wrapperComponent, contentComponent } = contextInstance;
     const { disabled } = contextInstance.setup;
 
-    if (disabled || !wrapperComponent || !contentComponent) return;
+    if (disabled || !wrapperComponent || !contentComponent) {
+      return;
+    }
 
     const targetState = {
       positionX: isNaN(newPositionX) ? positionX : newPositionX,

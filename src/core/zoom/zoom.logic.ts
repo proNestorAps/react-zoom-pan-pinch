@@ -22,7 +22,9 @@ export function handleAlignToScaleBounds(
     handleAlignToBounds(contextInstance);
   }
 
-  if (isDisabled || !wrapperComponent || !contextInstance.mounted) return;
+  if (isDisabled || !wrapperComponent || !contextInstance.mounted) {
+    return;
+  }
 
   const mouseX = mousePositionX || wrapperComponent.offsetWidth / 2;
   const mouseY = mousePositionY || wrapperComponent.offsetHeight / 2;

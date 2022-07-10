@@ -11,7 +11,9 @@ export const isVelocityCalculationAllowed = (
 
   const isAllowed = !disabledVelocity || scale > 1 || !disabled || mounted;
 
-  if (!isAllowed) return false;
+  if (!isAllowed) {
+    return false;
+  }
 
   return true;
 };
@@ -26,8 +28,12 @@ export const isVelocityAllowed = (
 
   const isAllowed = !disabledVelocity || scale > 1 || !disabled || mounted;
 
-  if (!isAllowed) return false;
-  if (!velocity || !bounds) return false;
+  if (!isAllowed) {
+    return false;
+  }
+  if (!velocity || !bounds) {
+    return false;
+  }
 
   return true;
 };
@@ -62,18 +68,28 @@ export function getVelocityPosition(
       const calculatedPosition =
         maxPosition + (newPosition - maxPosition) * step;
 
-      if (calculatedPosition > maxTarget) return maxTarget;
-      if (calculatedPosition < maxPosition) return maxPosition;
+      if (calculatedPosition > maxTarget) {
+        return maxTarget;
+      }
+      if (calculatedPosition < maxPosition) {
+        return maxPosition;
+      }
       return calculatedPosition;
     }
     if (startPosition < minPosition && currentPosition < minPosition) {
       const calculatedPosition =
         minPosition + (newPosition - minPosition) * step;
-      if (calculatedPosition < minTarget) return minTarget;
-      if (calculatedPosition > minPosition) return minPosition;
+      if (calculatedPosition < minTarget) {
+        return minTarget;
+      }
+      if (calculatedPosition > minPosition) {
+        return minPosition;
+      }
       return calculatedPosition;
     }
   }
-  if (isLocked) return startPosition;
+  if (isLocked) {
+    return startPosition;
+  }
   return boundLimiter(newPosition, minPosition, maxPosition, limitToBounds);
 }

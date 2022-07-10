@@ -37,7 +37,9 @@ export function handlePanning(
   const { startCoords, setup } = contextInstance;
   const { sizeX, sizeY } = setup.alignmentAnimation;
 
-  if (!startCoords) return;
+  if (!startCoords) {
+    return;
+  }
 
   const { x, y } = getPanningClientPosition(contextInstance, clientX, clientY);
   const paddingValueX = getPaddingValue(contextInstance, sizeX);
@@ -89,7 +91,9 @@ export function handleAlignToBounds(
 
   const isDisabled = disabled || scale < minScale || (!sizeX && !sizeY);
 
-  if (isDisabled) return;
+  if (isDisabled) {
+    return;
+  }
 
   const targetState = handlePanToBounds(contextInstance);
 

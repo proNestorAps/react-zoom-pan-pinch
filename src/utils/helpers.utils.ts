@@ -7,13 +7,17 @@ export const isExcludedNode = (
     (tag) => tag.toUpperCase() === targetTagName,
   );
 
-  if (isExcludedTag) return true;
+  if (isExcludedTag) {
+    return true;
+  }
 
   const isExcludedClassName = excluded.find((className) =>
     node.classList.contains(className),
   );
 
-  if (isExcludedClassName) return true;
+  if (isExcludedClassName) {
+    return true;
+  }
 
   return false;
 };

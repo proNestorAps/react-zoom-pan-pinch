@@ -48,7 +48,9 @@ export function handleZoomToViewCenter(
   const { wrapperComponent } = contextInstance;
   const { scale, positionX, positionY } = contextInstance.transformState;
 
-  if (!wrapperComponent) return console.error("No WrapperComponent found");
+  if (!wrapperComponent) {
+    return console.error("No WrapperComponent found");
+  }
 
   const wrapperWidth = wrapperComponent.offsetWidth;
   const wrapperHeight = wrapperComponent.offsetHeight;
@@ -83,7 +85,9 @@ export function resetTransformations(
   const initialTransformation = createState(contextInstance.props);
   const { scale, positionX, positionY } = contextInstance.transformState;
 
-  if (!wrapperComponent) return;
+  if (!wrapperComponent) {
+    return;
+  }
 
   const newBounds = calculateBounds(
     contextInstance,
@@ -124,7 +128,9 @@ export function calculateZoomToNode(
 ): { positionX: number; positionY: number; scale: number } {
   const { wrapperComponent } = contextInstance;
   const { limitToBounds, minScale, maxScale } = contextInstance.setup;
-  if (!wrapperComponent) return initialState;
+  if (!wrapperComponent) {
+    return initialState;
+  }
 
   const wrapperRect = wrapperComponent.getBoundingClientRect();
   const nodeRect = getOffset(node);

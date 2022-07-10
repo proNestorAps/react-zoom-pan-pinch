@@ -15,7 +15,9 @@ export function handleDoubleClick(
   const { disabled, mode, step, animationTime, animationType } =
     contextInstance.setup.doubleClick;
 
-  if (disabled) return;
+  if (disabled) {
+    return;
+  }
 
   if (mode === "reset") {
     return resetTransformations(contextInstance, animationTime, animationType);
@@ -24,7 +26,9 @@ export function handleDoubleClick(
   const { scale } = contextInstance.transformState;
   const { contentComponent } = contextInstance;
 
-  if (!contentComponent) return console.error("No ContentComponent found");
+  if (!contentComponent) {
+    return console.error("No ContentComponent found");
+  }
 
   const delta = mode === "zoomOut" ? -1 : 1;
 
@@ -57,13 +61,19 @@ export const isDoubleClickAllowed = (
   const isWrapperChild = wrapperComponent?.contains(target);
   const isAllowed = isInitialized && target && isWrapperChild && !disabled;
 
-  if (!isAllowed) return false;
+  if (!isAllowed) {
+    return false;
+  }
 
   const isExcluded = isExcludedNode(target, excluded);
 
-  if (isExcluded) return false;
+  if (isExcluded) {
+    return false;
+  }
 
-  if (!isAllowed) return false;
+  if (!isAllowed) {
+    return false;
+  }
 
   return true;
 };

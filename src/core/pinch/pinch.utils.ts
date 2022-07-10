@@ -12,11 +12,15 @@ export const isPinchStartAllowed = (
   const target = event.target as HTMLElement;
   const isAllowed = isInitialized && !disabled && target;
 
-  if (!isAllowed) return false;
+  if (!isAllowed) {
+    return false;
+  }
 
   const isExcluded = isExcludedNode(target, excluded);
 
-  if (isExcluded) return false;
+  if (isExcluded) {
+    return false;
+  }
 
   return true;
 };
@@ -29,7 +33,9 @@ export const isPinchAllowed = (
 
   const isAllowed = isInitialized && !disabled && pinchStartDistance;
 
-  if (!isAllowed) return false;
+  if (!isAllowed) {
+    return false;
+  }
 
   return true;
 };

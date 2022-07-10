@@ -13,14 +13,22 @@ export const isWheelAllowed = (
   const target = event.target as HTMLElement;
   const isAllowed = isInitialized && !isPanning && !disabled && target;
 
-  if (!isAllowed) return false;
+  if (!isAllowed) {
+    return false;
+  }
   // Event ctrlKey detects if touchpad action is executing wheel or pinch gesture
-  if (wheelDisabled && !event.ctrlKey) return false;
-  if (touchPadDisabled && event.ctrlKey) return false;
+  if (wheelDisabled && !event.ctrlKey) {
+    return false;
+  }
+  if (touchPadDisabled && event.ctrlKey) {
+    return false;
+  }
 
   const isExcluded = isExcludedNode(target, excluded);
 
-  if (isExcluded) return false;
+  if (isExcluded) {
+    return false;
+  }
 
   return true;
 };
@@ -54,8 +62,9 @@ export function getMousePosition(
     mouseY = (touch.clientY - contentRect.top) / scale;
   }
 
-  if (isNaN(mouseX) || isNaN(mouseY))
+  if (isNaN(mouseX) || isNaN(mouseY)) {
     console.error("No mouse or touch offset found");
+  }
 
   return {
     x: mouseX,
@@ -81,7 +90,9 @@ export const handleCalculateWheelZoom = (
 
   const targetScale = scale + delta * (scale - scale * step) * step;
 
-  if (getTarget) return targetScale;
+  if (getTarget) {
+    return targetScale;
+  }
   const paddingEnabled = disablePadding ? false : !disabled;
   const newScale = checkZoomBounds(
     roundNumber(targetScale, 3),
@@ -101,15 +112,29 @@ export const handleWheelZoomStop = (
   const { scale } = contextInstance.transformState;
   const { maxScale, minScale } = contextInstance.setup;
 
-  if (!previousWheelEvent) return false;
-  if (scale < maxScale || scale > minScale) return true;
-  if (Math.sign(previousWheelEvent.deltaY) !== Math.sign(event.deltaY))
+  if (!previousWheelEvent) {
+    return false;
+  }
+  if (scale < maxScale || scale > minScale) {
     return true;
-  if (previousWheelEvent.deltaY > 0 && previousWheelEvent.deltaY < event.deltaY)
+  }
+  if (Math.sign(previousWheelEvent.deltaY) !== Math.sign(event.deltaY)) {
     return true;
-  if (previousWheelEvent.deltaY < 0 && previousWheelEvent.deltaY > event.deltaY)
+  }
+  if (
+    previousWheelEvent.deltaY > 0 &&
+    previousWheelEvent.deltaY < event.deltaY
+  ) {
     return true;
-  if (Math.sign(previousWheelEvent.deltaY) !== Math.sign(event.deltaY))
+  }
+  if (
+    previousWheelEvent.deltaY < 0 &&
+    previousWheelEvent.deltaY > event.deltaY
+  ) {
     return true;
+  }
+  if (Math.sign(previousWheelEvent.deltaY) !== Math.sign(event.deltaY)) {
+    return true;
+  }
   return false;
 };

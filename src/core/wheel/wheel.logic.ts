@@ -57,7 +57,9 @@ export const handleWheelZoom = (
   );
 
   // if scale not change
-  if (scale === newScale) return;
+  if (scale === newScale) {
+    return;
+  }
 
   const bounds = handleCalculateBounds(contextInstance, newScale);
 
@@ -92,7 +94,9 @@ export const handleWheelStop = (
   // fire animation
   cancelTimeout(contextInstance.wheelAnimationTimer);
   contextInstance.wheelAnimationTimer = setTimeout(() => {
-    if (!contextInstance.mounted) return;
+    if (!contextInstance.mounted) {
+      return;
+    }
     handleAlignToScaleBounds(contextInstance, event.x, event.y);
     contextInstance.wheelAnimationTimer = null;
   }, wheelAnimationTime);
@@ -102,7 +106,9 @@ export const handleWheelStop = (
   if (hasStoppedZooming) {
     cancelTimeout(contextInstance.wheelStopEventTimer);
     contextInstance.wheelStopEventTimer = setTimeout(() => {
-      if (!contextInstance.mounted) return;
+      if (!contextInstance.mounted) {
+        return;
+      }
       contextInstance.wheelStopEventTimer = null;
       handleCallback(getContext(contextInstance), event, onWheelStop);
       handleCallback(getContext(contextInstance), event, onZoomStop);

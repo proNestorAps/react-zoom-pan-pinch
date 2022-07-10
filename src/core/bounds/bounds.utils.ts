@@ -149,8 +149,14 @@ export const boundLimiter = (
   maxBound: number,
   isActive: boolean,
 ): number => {
-  if (!isActive) return roundNumber(value, 2);
-  if (value < minBound) return roundNumber(minBound, 2);
-  if (value > maxBound) return roundNumber(maxBound, 2);
+  if (!isActive) {
+    return roundNumber(value, 2);
+  }
+  if (value < minBound) {
+    return roundNumber(minBound, 2);
+  }
+  if (value > maxBound) {
+    return roundNumber(maxBound, 2);
+  }
   return roundNumber(value, 2);
 };
