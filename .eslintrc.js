@@ -7,8 +7,23 @@ module.exports = {
     // Always use strict equality comparison, that is === or !==.
     eqeqeq: ["warn", "always"],
 
+    // Do not allow alert boxes.
+    "no-alert": "warn",
+
     // Do not use shorthands to convert between types.
     "no-implicit-coercion": "warn",
+
+    // Prefer const or let over var.
+    "no-var": "warn",
+
+    // Use fat arrow style in callbacks.
+    "prefer-arrow-callback": "warn",
+
+    // Prefer const over let.
+    "prefer-const": "warn",
+
+    // Do not allow backtick strings unless they are template strings.
+    quotes: ["warn", "double"],
   },
   overrides: [
     {
