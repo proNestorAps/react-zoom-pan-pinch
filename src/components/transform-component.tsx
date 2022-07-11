@@ -2,13 +2,13 @@ import React, { useContext, useEffect, useRef } from "react";
 import styles from "./transform-component.module.css";
 import { Context } from "./transform-context";
 
-type Props = {
+interface Props {
   children: React.ReactNode;
   wrapperClass?: string;
   contentClass?: string;
   wrapperStyle?: React.CSSProperties;
   contentStyle?: React.CSSProperties;
-};
+}
 
 export const TransformComponent: React.FC<Props> = ({
   children,

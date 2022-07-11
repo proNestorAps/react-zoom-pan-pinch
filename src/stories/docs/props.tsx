@@ -3,13 +3,13 @@ import React from "react";
 import { initialSetup, initialState } from "../../constants/state.constants";
 import { animations } from "../../core/animations/animations.constants";
 
-export type ControlsOptionsType = {
+export interface ControlsOptionsType {
   name: React.ReactNode;
   type: Array<string>;
   defaultValue: string;
   description: string;
   isObjectRow?: boolean;
-};
+}
 
 export type ComponentProps = Record<
   keyof Omit<ReactZoomPanPinchProps, "children">,

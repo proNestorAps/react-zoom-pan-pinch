@@ -2,7 +2,9 @@ import Highlight, { defaultProps } from "prism-react-renderer";
 import vsLight from "prism-react-renderer/themes/vsLight";
 import React from "react";
 
-type Props = { code: string };
+interface Props {
+  code: string;
+}
 
 export const Code: React.FC<Props> = ({ code }: Props) => (
   <Highlight {...defaultProps} code={code} theme={vsLight} language="tsx">

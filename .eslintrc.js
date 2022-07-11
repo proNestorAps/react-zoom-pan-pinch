@@ -55,6 +55,9 @@ module.exports = {
             default: "generic",
           },
         ],
+
+        // Prefer interfaces over types.
+        "@typescript-eslint/consistent-type-definitions": ["warn", "interface"],
       },
     },
   ],

@@ -1,13 +1,13 @@
 import React from "react";
 import { ReactZoomPanPinchHandlers } from "../../models/context.model";
 
-export type ControlsFnOptionsType = {
+export interface ControlsFnOptionsType {
   name: React.ReactNode;
   type: Array<string>;
   parameters: Array<string>;
   description: string;
   isObjectRow?: boolean;
-};
+}
 
 export type ComponentProps = Record<
   keyof ReactZoomPanPinchHandlers,
