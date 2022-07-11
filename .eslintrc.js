@@ -1,4 +1,11 @@
 module.exports = {
+  env: {
+    commonjs: false,
+    es2021: true,
+    es6: false,
+    jest: false,
+    node: false,
+  },
   extends: ["react-app"],
   rules: {
     // Always wrap in curly braces, even one-liners.
