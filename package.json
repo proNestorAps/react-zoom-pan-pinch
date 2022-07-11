@@ -20,9 +20,9 @@
   "scripts": {
     "build-docs": "build-storybook",
     "build": "rollup --config",
-    "start": "start-storybook --port 6006",
-    "check-linting": "eslint src/ --ext .js,.jsx,.tsx,.ts --format unix",
     "check-formatting": "prettier --check \"(.storybook|src)/**/*.+(js|json|ts|tsx)\" \"*.+(js|json|ts|tsx)\"",
+    "check-linting": "eslint src/ --ext .js,.jsx,.tsx,.ts --format unix",
+    "start": "start-storybook --port 6006",
     "update-dependencies": "yarn upgrade && npx syncyarnlock --keepPrefix --save && yarn install"
   },
   "dependencies": {},
