@@ -108,7 +108,7 @@ export const zoomToElement =
 
     const { wrapperComponent } = contextInstance;
 
-    const target: HTMLElement | null =
+    const target =
       typeof node === "string" ? document.getElementById(node) : node;
 
     if (

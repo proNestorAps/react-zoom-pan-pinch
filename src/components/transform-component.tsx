@@ -25,7 +25,7 @@ export const TransformComponent: React.FC<Props> = ({
   useEffect(() => {
     const wrapper = wrapperRef.current;
     const content = contentRef.current;
-    if (wrapper !== null && content !== null && setComponents) {
+    if (wrapper !== null && content !== null) {
       setComponents(wrapper, content);
     }
   }, [setComponents]);

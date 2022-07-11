@@ -61,6 +61,9 @@ module.exports = {
 
         // Make sure something that returns void isn't used by accident.
         "@typescript-eslint/no-confusing-void-expression": "warn",
+
+        // Do not allow unnecessary checks for null.
+        "@typescript-eslint/no-unnecessary-condition": "warn",
       },
     },
   ],

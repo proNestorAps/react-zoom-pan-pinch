@@ -174,32 +174,29 @@ export function calculateZoomToNode(
   return { positionX: x, positionY: y, scale: newScale };
 }
 
-function getOffset(element: HTMLElement): PositionType {
-  let el = element;
-
-  let offsetLeft = 0;
-  let offsetTop = 0;
-
-  while (el) {
-    offsetLeft += el.offsetLeft;
-    offsetTop += el.offsetTop;
-
-    el = el.offsetParent as HTMLElement;
+function getOffset(element: Element | null): PositionType {
+  if (element === null || !(element instanceof HTMLElement)) {
+    return {
+      x: 0,
+      y: 0,
+    };
   }
 
+  const parentOffset = getOffset(element.offsetParent);
+
   return {
-    x: offsetLeft,
-    y: offsetTop,
+    x: element.offsetLeft + parentOffset.x,
+    y: element.offsetTop + parentOffset.y,
   };
 }
 
-export function isValidZoomNode(node: HTMLElement | null): boolean {
+export function isValidZoomNode(node: any): boolean {
   if (!node) {
     console.error("Zoom node not found");
     return false;
   } else if (
-    node?.offsetWidth === undefined ||
-    node?.offsetHeight === undefined
+    node.offsetWidth === undefined ||
+    node.offsetHeight === undefined
   ) {
     console.error(
       "Zoom node is not valid - it must contain offsetWidth and offsetHeight",

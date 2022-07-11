@@ -60,7 +60,7 @@ export const isDoubleClickAllowed = (
   const { isInitialized, setup, wrapperComponent } = contextInstance;
   const { disabled, excluded } = setup.doubleClick;
 
-  const target = event.target as HTMLElement;
+  const target = event.target as HTMLElement | null;
   const isWrapperChild = wrapperComponent?.contains(target);
   const isAllowed = isInitialized && target && isWrapperChild && !disabled;
 
@@ -71,10 +71,6 @@ export const isDoubleClickAllowed = (
   const isExcluded = isExcludedNode(target, excluded);
 
   if (isExcluded) {
-    return false;
-  }
-
-  if (!isAllowed) {
     return false;
   }
 

@@ -22,7 +22,7 @@ export function handlePanningStart(
 
   handleCancelAnimation(contextInstance);
   handleCalculateBounds(contextInstance, scale);
-  if ((event as TouchEvent).touches) {
+  if (event instanceof TouchEvent) {
     handleTouchPanningSetup(contextInstance, event as TouchEvent);
   } else {
     handlePanningSetup(contextInstance, event as MouseEvent);
@@ -71,7 +71,7 @@ export function handlePanningEnd(
       wrapperWidth < contentWidth || wrapperHeight < contentHeight;
 
     const shouldAnimate =
-      !velocityDisabled && velocity && velocity?.total > 0.1 && isZoomed;
+      !velocityDisabled && velocity && velocity.total > 0.1 && isZoomed;
 
     if (shouldAnimate) {
       handleVelocityPanning(contextInstance);

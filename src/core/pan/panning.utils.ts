@@ -14,7 +14,7 @@ export const isPanningStartAllowed = (
   const { excluded } = contextInstance.setup.panning;
   const { isInitialized, wrapperComponent } = contextInstance;
 
-  const target = event.target as HTMLElement;
+  const target = event.target as HTMLElement | null;
   const isWrapperChild = wrapperComponent?.contains(target);
   const isAllowed = isInitialized && target && isWrapperChild;
 

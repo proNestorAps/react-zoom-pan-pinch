@@ -37,7 +37,7 @@ export function getDelta(
   event: WheelEvent,
   customDelta?: number | null,
 ): number {
-  const deltaY = event ? (event.deltaY < 0 ? 1 : -1) : 0;
+  const deltaY = event.deltaY < 0 ? 1 : -1;
   const delta = checkIsNumber(customDelta, deltaY);
   return delta;
 }
