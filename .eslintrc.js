@@ -58,6 +58,9 @@ module.exports = {
 
         // Prefer interfaces over types.
         "@typescript-eslint/consistent-type-definitions": ["warn", "interface"],
+
+        // Make sure something that returns void isn't used by accident.
+        "@typescript-eslint/no-confusing-void-expression": "warn",
       },
     },
   ],

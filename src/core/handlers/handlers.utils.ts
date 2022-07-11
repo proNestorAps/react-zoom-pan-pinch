@@ -49,7 +49,8 @@ export function handleZoomToViewCenter(
   const { scale, positionX, positionY } = contextInstance.transformState;
 
   if (!wrapperComponent) {
-    return console.error("No WrapperComponent found");
+    console.error("No WrapperComponent found");
+    return;
   }
 
   const wrapperWidth = wrapperComponent.offsetWidth;
@@ -67,9 +68,10 @@ export function handleZoomToViewCenter(
   );
 
   if (!targetState) {
-    return console.error(
+    console.error(
       "Error during zoom event. New transformation state was not calculated.",
     );
+    return;
   }
 
   animate(contextInstance, targetState, animationTime, animationType);

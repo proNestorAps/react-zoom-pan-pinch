@@ -42,7 +42,8 @@ export function handleSetupAnimation(
   // new animation
   contextInstance.animation = () => {
     if (!contextInstance.mounted) {
-      return handleCancelAnimationFrame(contextInstance.animation);
+      handleCancelAnimationFrame(contextInstance.animation);
+      return;
     }
 
     const frameTime = new Date().getTime() - startTime;

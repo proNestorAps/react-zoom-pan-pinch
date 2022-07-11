@@ -20,14 +20,16 @@ export function handleDoubleClick(
   }
 
   if (mode === "reset") {
-    return resetTransformations(contextInstance, animationTime, animationType);
+    resetTransformations(contextInstance, animationTime, animationType);
+    return;
   }
 
   const { scale } = contextInstance.transformState;
   const { contentComponent } = contextInstance;
 
   if (!contentComponent) {
-    return console.error("No ContentComponent found");
+    console.error("No ContentComponent found");
+    return;
   }
 
   const delta = mode === "zoomOut" ? -1 : 1;
@@ -42,9 +44,10 @@ export function handleDoubleClick(
   );
 
   if (!targetState) {
-    return console.error(
+    console.error(
       "Error during zoom event. New transformation state was not calculated.",
     );
+    return;
   }
 
   animate(contextInstance, targetState, animationTime, animationType);
