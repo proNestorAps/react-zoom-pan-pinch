@@ -59,6 +59,9 @@ module.exports = {
         // Prefer interfaces over types.
         "@typescript-eslint/consistent-type-definitions": ["warn", "interface"],
 
+        // Require explicit accessibility modifiers since everything is public by default.
+        "@typescript-eslint/explicit-member-accessibility": "warn",
+
         // Make sure something that returns void isn't used by accident.
         "@typescript-eslint/no-confusing-void-expression": "warn",
 

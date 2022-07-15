@@ -91,7 +91,7 @@ class TransformContext extends Component<
   // key press
   public pressedKeys: { [key: string]: boolean } = {};
 
-  componentDidMount(): void {
+  public componentDidMount(): void {
     const passive = makePassiveEventOption();
     // Panning on window to allow panning when mouse is out of component wrapper
     window.addEventListener("mousedown", this.onPanningStart, passive);
@@ -104,7 +104,7 @@ class TransformContext extends Component<
     this.handleRef();
   }
 
-  componentWillUnmount(): void {
+  public componentWillUnmount(): void {
     const passive = makePassiveEventOption();
 
     window.removeEventListener("mousedown", this.onPanningStart, passive);
@@ -116,14 +116,14 @@ class TransformContext extends Component<
     handleCancelAnimation(this);
   }
 
-  componentDidUpdate(oldProps: ReactZoomPanPinchProps): void {
+  public componentDidUpdate(oldProps: ReactZoomPanPinchProps): void {
     if (oldProps !== this.props) {
       handleCalculateBounds(this, this.transformState.scale);
       this.setup = createSetup(this.props);
     }
   }
 
-  handleInitializeWrapperEvents = (wrapper: HTMLDivElement): void => {
+  private handleInitializeWrapperEvents = (wrapper: HTMLDivElement): void => {
     // Zooming events on wrapper
     const passive = makePassiveEventOption();
 
@@ -134,7 +134,7 @@ class TransformContext extends Component<
     wrapper.addEventListener("touchend", this.onTouchPanningStop, passive);
   };
 
-  handleInitialize = (): void => {
+  private handleInitialize = (): void => {
     const { centerOnInit } = this.setup;
 
     this.applyTransformation();
@@ -165,7 +165,7 @@ class TransformContext extends Component<
   // Zoom
   //////////
 
-  onWheelZoom = (event: WheelEvent): void => {
+  private onWheelZoom = (event: WheelEvent): void => {
     const { disabled } = this.setup;
     if (disabled) {
       return;
@@ -190,7 +190,7 @@ class TransformContext extends Component<
   // Pan
   //////////
 
-  onPanningStart = (event: MouseEvent): void => {
+  private onPanningStart = (event: MouseEvent): void => {
     const { disabled } = this.setup;
     const { onPanningStart } = this.props;
     if (disabled) {
@@ -215,7 +215,7 @@ class TransformContext extends Component<
     handleCallback(getContext(this), event, onPanningStart);
   };
 
-  onPanning = (event: MouseEvent): void => {
+  private onPanning = (event: MouseEvent): void => {
     const { disabled } = this.setup;
     const { onPanning } = this.props;
 
@@ -240,7 +240,7 @@ class TransformContext extends Component<
     handleCallback(getContext(this), event, onPanning);
   };
 
-  onPanningStop = (event: MouseEvent | TouchEvent): void => {
+  private onPanningStop = (event: MouseEvent | TouchEvent): void => {
     const { onPanningStop } = this.props;
 
     if (this.isPanning) {
@@ -253,7 +253,7 @@ class TransformContext extends Component<
   // Pinch
   //////////
 
-  onPinchStart = (event: TouchEvent): void => {
+  private onPinchStart = (event: TouchEvent): void => {
     const { disabled } = this.setup;
     const { onPinchingStart, onZoomStart } = this.props;
 
@@ -272,7 +272,7 @@ class TransformContext extends Component<
     handleCallback(getContext(this), event, onZoomStart);
   };
 
-  onPinch = (event: TouchEvent): void => {
+  private onPinch = (event: TouchEvent): void => {
     const { disabled } = this.setup;
     const { onPinching, onZoom } = this.props;
 
@@ -293,7 +293,7 @@ class TransformContext extends Component<
     handleCallback(getContext(this), event, onZoom);
   };
 
-  onPinchStop = (event: TouchEvent): void => {
+  private onPinchStop = (event: TouchEvent): void => {
     const { onPinchingStop, onZoomStop } = this.props;
 
     if (this.pinchStartScale !== null && this.pinchStartScale !== 0) {
@@ -307,7 +307,7 @@ class TransformContext extends Component<
   // Touch
   //////////
 
-  onTouchPanningStart = (event: TouchEvent): void => {
+  private onTouchPanningStart = (event: TouchEvent): void => {
     const { disabled } = this.setup;
     const { onPanningStart } = this.props;
 
@@ -347,7 +347,7 @@ class TransformContext extends Component<
     }
   };
 
-  onTouchPanning = (event: TouchEvent): void => {
+  private onTouchPanning = (event: TouchEvent): void => {
     const { disabled } = this.setup;
     const { onPanning } = this.props;
 
@@ -372,7 +372,7 @@ class TransformContext extends Component<
     }
   };
 
-  onTouchPanningStop = (event: TouchEvent): void => {
+  private onTouchPanningStop = (event: TouchEvent): void => {
     this.onPanningStop(event);
     this.onPinchStop(event);
   };
@@ -381,7 +381,7 @@ class TransformContext extends Component<
   // Double Click
   //////////
 
-  onDoubleClick = (event: MouseEvent | TouchEvent): void => {
+  private onDoubleClick = (event: MouseEvent | TouchEvent): void => {
     const { disabled } = this.setup;
     if (disabled) {
       return;
@@ -399,28 +399,28 @@ class TransformContext extends Component<
   // Helpers
   //////////
 
-  clearPanning = (event: MouseEvent): void => {
+  private clearPanning = (event: MouseEvent): void => {
     if (this.isPanning) {
       this.onPanningStop(event);
     }
   };
 
-  setKeyPressed = (e: KeyboardEvent): void => {
+  private setKeyPressed = (e: KeyboardEvent): void => {
     this.pressedKeys[e.key] = true;
   };
 
-  setKeyUnPressed = (e: KeyboardEvent): void => {
+  private setKeyUnPressed = (e: KeyboardEvent): void => {
     this.pressedKeys[e.key] = false;
   };
 
-  isPressingKeys = (keys: Array<string>): boolean => {
+  private isPressingKeys = (keys: Array<string>): boolean => {
     if (keys.length === 0) {
       return true;
     }
     return keys.some((key) => this.pressedKeys[key]);
   };
 
-  setComponents = (
+  private setComponents = (
     wrapperComponent: HTMLDivElement,
     contentComponent: HTMLDivElement,
   ): void => {
@@ -434,7 +434,7 @@ class TransformContext extends Component<
     handleCallback(getContext(this), undefined, this.props.onInit);
   };
 
-  setTransformState = (
+  public setTransformState = (
     scale: number,
     positionX: number,
     positionY: number,
@@ -453,7 +453,7 @@ class TransformContext extends Component<
     }
   };
 
-  setCenter = (): void => {
+  private setCenter = (): void => {
     if (this.wrapperComponent !== null && this.contentComponent !== null) {
       const targetState = getCenterPosition(
         this.transformState.scale,
@@ -468,7 +468,7 @@ class TransformContext extends Component<
     }
   };
 
-  applyTransformation = (): void => {
+  private applyTransformation = (): void => {
     if (!this.mounted || this.contentComponent === null) {
       return;
     }
@@ -479,11 +479,11 @@ class TransformContext extends Component<
     this.handleRef();
   };
 
-  handleRef = (): void => {
+  private handleRef = (): void => {
     this.props.setRef(getContext(this));
   };
 
-  render(): JSX.Element {
+  public render(): JSX.Element {
     const value = getContext(this);
     const { children } = this.props;
     const content = typeof children === "function" ? children(value) : children;
