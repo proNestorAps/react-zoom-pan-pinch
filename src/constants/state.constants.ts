@@ -6,10 +6,10 @@ import {
 } from "../models/context.model";
 
 export const initialState: ReactZoomPanPinchState = {
-  previousScale: 1,
-  scale: 1,
   positionX: 0,
   positionY: 0,
+  previousScale: 1,
+  scale: 1,
 };
 
 export const contextInitialState: ReactZoomPanPinchComponentHelpers &
@@ -17,69 +17,69 @@ export const contextInitialState: ReactZoomPanPinchComponentHelpers &
     contextInstance: ReactZoomPanPinchContext | null;
   } = {
   ...initialState,
-  setComponents: () => undefined,
   contextInstance: null,
+  setComponents: () => undefined,
 };
 
 export const initialSetup: LibrarySetup = {
-  disabled: false,
-  minPositionX: null,
-  maxPositionX: null,
-  minPositionY: null,
-  maxPositionY: null,
-  minScale: 1,
-  maxScale: 8,
-  limitToBounds: true,
-  centerZoomedOut: false,
   centerOnInit: false,
-  wheel: {
-    step: 0.2,
-    disabled: false,
-    wheelDisabled: false,
-    touchPadDisabled: false,
-    activationKeys: [],
-    excluded: [],
-  },
-  panning: {
-    disabled: false,
-    velocityDisabled: false,
-    lockAxisX: false,
-    lockAxisY: false,
-    activationKeys: [],
-    excluded: [],
-  },
-  pinch: {
-    step: 5,
-    disabled: false,
-    excluded: [],
-  },
-  doubleClick: {
-    disabled: false,
-    step: 0.7,
-    mode: "zoomIn",
-    animationType: "easeOut",
-    animationTime: 200,
-    excluded: [],
-  },
-  zoomAnimation: {
-    disabled: false,
-    size: 0.4,
-    animationTime: 200,
-    animationType: "easeOut",
-  },
+  centerZoomedOut: false,
+  disabled: false,
+  limitToBounds: true,
+  maxPositionX: null,
+  maxPositionY: null,
+  maxScale: 8,
+  minPositionX: null,
+  minPositionY: null,
+  minScale: 1,
   alignmentAnimation: {
+    animationTime: 200,
+    animationType: "easeOut",
     disabled: false,
     sizeX: 100,
     sizeY: 100,
-    animationTime: 200,
     velocityAlignmentTime: 400,
+  },
+  doubleClick: {
+    animationTime: 200,
     animationType: "easeOut",
+    disabled: false,
+    excluded: [],
+    mode: "zoomIn",
+    step: 0.7,
+  },
+  panning: {
+    activationKeys: [],
+    disabled: false,
+    excluded: [],
+    lockAxisX: false,
+    lockAxisY: false,
+    velocityDisabled: false,
+  },
+  pinch: {
+    disabled: false,
+    excluded: [],
+    step: 5,
   },
   velocityAnimation: {
-    disabled: false,
-    sensitivity: 1,
     animationTime: 400,
     animationType: "easeOut",
+    disabled: false,
     equalToMove: true,
+    sensitivity: 1,
+  },
+  wheel: {
+    activationKeys: [],
+    disabled: false,
+    excluded: [],
+    step: 0.2,
+    touchPadDisabled: false,
+    wheelDisabled: false,
+  },
+  zoomAnimation: {
+    animationTime: 200,
+    animationType: "easeOut",
+    disabled: false,
+    size: 0.4,
   },
 };

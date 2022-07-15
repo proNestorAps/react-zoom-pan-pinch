@@ -22,7 +22,7 @@ export const handleWheelStart = (
 ): void => {
   const { onWheelStart, onZoomStart } = contextInstance.props;
 
-  if (!contextInstance.wheelStopEventTimer) {
+  if (contextInstance.wheelStopEventTimer === null) {
     handleCancelAnimation(contextInstance);
     handleCallback(getContext(contextInstance), event, onWheelStart);
     handleCallback(getContext(contextInstance), event, onZoomStart);
@@ -41,7 +41,7 @@ export const handleWheelZoom = (
   const { size, disabled } = zoomAnimation;
   const { step } = wheel;
 
-  if (!contentComponent) {
+  if (contentComponent === null) {
     throw new Error("Component not mounted");
   }
 
@@ -57,7 +57,9 @@ export const handleWheelZoom = (
   );
 
   // if scale not change
-  if (scale === newScale) return;
+  if (scale === newScale) {
+    return;
+  }
 
   const bounds = handleCalculateBounds(contextInstance, newScale);
 
@@ -92,7 +94,9 @@ export const handleWheelStop = (
   // fire animation
   cancelTimeout(contextInstance.wheelAnimationTimer);
   contextInstance.wheelAnimationTimer = setTimeout(() => {
-    if (!contextInstance.mounted) return;
+    if (!contextInstance.mounted) {
+      return;
+    }
     handleAlignToScaleBounds(contextInstance, event.x, event.y);
     contextInstance.wheelAnimationTimer = null;
   }, wheelAnimationTime);
@@ -102,7 +106,9 @@ export const handleWheelStop = (
   if (hasStoppedZooming) {
     cancelTimeout(contextInstance.wheelStopEventTimer);
     contextInstance.wheelStopEventTimer = setTimeout(() => {
-      if (!contextInstance.mounted) return;
+      if (!contextInstance.mounted) {
+        return;
+      }
       contextInstance.wheelStopEventTimer = null;
       handleCallback(getContext(contextInstance), event, onWheelStop);
       handleCallback(getContext(contextInstance), event, onZoomStop);

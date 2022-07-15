@@ -1,26 +1,30 @@
-export type SizeType = {
+export interface SizeType {
   width: number;
   height: number;
-};
+}
 
-export type PositionType = {
+export interface PositionType {
   x: number;
   y: number;
-};
+}
 
-export type StateType = { scale: number; positionX: number; positionY: number };
+export interface StateType {
+  scale: number;
+  positionX: number;
+  positionY: number;
+}
 
-export type VelocityType = {
+export interface VelocityType {
   velocityX: number;
   velocityY: number;
   total: number;
-};
+}
 
-export type BoundsType = {
+export interface BoundsType {
   minPositionX: number;
   maxPositionX: number;
   minPositionY: number;
   maxPositionY: number;
-};
+}
 
 export type AnimationType = () => void | number;

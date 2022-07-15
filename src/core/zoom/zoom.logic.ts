@@ -22,10 +22,18 @@ export function handleAlignToScaleBounds(
     handleAlignToBounds(contextInstance);
   }
 
-  if (isDisabled || !wrapperComponent || !contextInstance.mounted) return;
+  if (isDisabled || wrapperComponent === null || !contextInstance.mounted) {
+    return;
+  }
 
-  const mouseX = mousePositionX || wrapperComponent.offsetWidth / 2;
-  const mouseY = mousePositionY || wrapperComponent.offsetHeight / 2;
+  const mouseX =
+    mousePositionX === undefined || mousePositionX === 0
+      ? wrapperComponent.offsetWidth / 2
+      : mousePositionX;
+  const mouseY =
+    mousePositionY === undefined || mousePositionY === 0
+      ? wrapperComponent.offsetHeight / 2
+      : mousePositionY;
 
   const targetState = handleZoomToPoint(
     contextInstance,
@@ -34,7 +42,7 @@ export function handleAlignToScaleBounds(
     mouseY,
   );
 
-  if (targetState) {
+  if (targetState !== undefined) {
     animate(contextInstance, targetState, animationTime, animationType);
   }
 }

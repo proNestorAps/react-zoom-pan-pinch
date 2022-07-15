@@ -22,7 +22,7 @@ export function handlePanningStart(
 
   handleCancelAnimation(contextInstance);
   handleCalculateBounds(contextInstance, scale);
-  if ((event as TouchEvent).touches) {
+  if (event instanceof TouchEvent) {
     handleTouchPanningSetup(contextInstance, event as TouchEvent);
   } else {
     handlePanningSetup(contextInstance, event as MouseEvent);
@@ -37,7 +37,9 @@ export function handlePanning(
   const { startCoords, setup } = contextInstance;
   const { sizeX, sizeY } = setup.alignmentAnimation;
 
-  if (!startCoords) return;
+  if (startCoords === null) {
+    return;
+  }
 
   const { x, y } = getPanningClientPosition(contextInstance, clientX, clientY);
   const paddingValueX = getPaddingValue(contextInstance, sizeX);
@@ -61,15 +63,18 @@ export function handlePanningEnd(
     const wrapperRect = wrapperComponent?.getBoundingClientRect();
     const contentRect = contentComponent?.getBoundingClientRect();
 
-    const wrapperWidth = wrapperRect?.width || 0;
-    const wrapperHeight = wrapperRect?.height || 0;
-    const contentWidth = contentRect?.width || 0;
-    const contentHeight = contentRect?.height || 0;
+    const wrapperWidth = wrapperRect?.width ?? 0;
+    const wrapperHeight = wrapperRect?.height ?? 0;
+    const contentWidth = contentRect?.width ?? 0;
+    const contentHeight = contentRect?.height ?? 0;
     const isZoomed =
       wrapperWidth < contentWidth || wrapperHeight < contentHeight;
 
     const shouldAnimate =
-      !velocityDisabled && velocity && velocity?.total > 0.1 && isZoomed;
+      !velocityDisabled &&
+      velocity !== null &&
+      velocity.total > 0.1 &&
+      isZoomed;
 
     if (shouldAnimate) {
       handleVelocityPanning(contextInstance);
@@ -87,13 +92,15 @@ export function handleAlignToBounds(
   const { disabled, sizeX, sizeY, animationTime, animationType } =
     alignmentAnimation;
 
-  const isDisabled = disabled || scale < minScale || (!sizeX && !sizeY);
+  const isDisabled =
+    disabled || scale < minScale || (sizeX === 0 && sizeY === 0);
 
-  if (isDisabled) return;
+  if (isDisabled) {
+    return;
+  }
 
   const targetState = handlePanToBounds(contextInstance);
-
-  if (targetState) {
+  if (targetState !== undefined) {
     animate(contextInstance, targetState, animationTime, animationType);
   }
 }

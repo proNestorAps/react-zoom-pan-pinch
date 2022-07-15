@@ -10,17 +10,25 @@ export const isWheelAllowed = (
     contextInstance.setup.wheel;
   const { isInitialized, isPanning } = contextInstance;
 
-  const target = event.target as HTMLElement;
-  const isAllowed = isInitialized && !isPanning && !disabled && target;
+  const target = event.target as HTMLElement | null;
+  const isAllowed = isInitialized && !isPanning && !disabled && target !== null;
+  if (!isAllowed) {
+    return false;
+  }
 
-  if (!isAllowed) return false;
   // Event ctrlKey detects if touchpad action is executing wheel or pinch gesture
-  if (wheelDisabled && !event.ctrlKey) return false;
-  if (touchPadDisabled && event.ctrlKey) return false;
+  if (wheelDisabled && !event.ctrlKey) {
+    return false;
+  }
+  if (touchPadDisabled && event.ctrlKey) {
+    return false;
+  }
 
   const isExcluded = isExcludedNode(target, excluded);
 
-  if (isExcluded) return false;
+  if (isExcluded) {
+    return false;
+  }
 
   return true;
 };
@@ -29,7 +37,7 @@ export function getDelta(
   event: WheelEvent,
   customDelta?: number | null,
 ): number {
-  const deltaY = event ? (event.deltaY < 0 ? 1 : -1) : 0;
+  const deltaY = event.deltaY < 0 ? 1 : -1;
   const delta = checkIsNumber(customDelta, deltaY);
   return delta;
 }
@@ -54,8 +62,9 @@ export function getMousePosition(
     mouseY = (touch.clientY - contentRect.top) / scale;
   }
 
-  if (isNaN(mouseX) || isNaN(mouseY))
+  if (isNaN(mouseX) || isNaN(mouseY)) {
     console.error("No mouse or touch offset found");
+  }
 
   return {
     x: mouseX,
@@ -75,13 +84,15 @@ export const handleCalculateWheelZoom = (
   const { maxScale, minScale, zoomAnimation } = setup;
   const { size, disabled } = zoomAnimation;
 
-  if (!wrapperComponent) {
+  if (wrapperComponent === null) {
     throw new Error("Wrapper is not mounted");
   }
 
   const targetScale = scale + delta * (scale - scale * step) * step;
 
-  if (getTarget) return targetScale;
+  if (getTarget === true) {
+    return targetScale;
+  }
   const paddingEnabled = disablePadding ? false : !disabled;
   const newScale = checkZoomBounds(
     roundNumber(targetScale, 3),
@@ -101,15 +112,29 @@ export const handleWheelZoomStop = (
   const { scale } = contextInstance.transformState;
   const { maxScale, minScale } = contextInstance.setup;
 
-  if (!previousWheelEvent) return false;
-  if (scale < maxScale || scale > minScale) return true;
-  if (Math.sign(previousWheelEvent.deltaY) !== Math.sign(event.deltaY))
+  if (previousWheelEvent === null) {
+    return false;
+  }
+  if (scale < maxScale || scale > minScale) {
     return true;
-  if (previousWheelEvent.deltaY > 0 && previousWheelEvent.deltaY < event.deltaY)
+  }
+  if (Math.sign(previousWheelEvent.deltaY) !== Math.sign(event.deltaY)) {
     return true;
-  if (previousWheelEvent.deltaY < 0 && previousWheelEvent.deltaY > event.deltaY)
+  }
+  if (
+    previousWheelEvent.deltaY > 0 &&
+    previousWheelEvent.deltaY < event.deltaY
+  ) {
     return true;
-  if (Math.sign(previousWheelEvent.deltaY) !== Math.sign(event.deltaY))
+  }
+  if (
+    previousWheelEvent.deltaY < 0 &&
+    previousWheelEvent.deltaY > event.deltaY
+  ) {
     return true;
+  }
+  if (Math.sign(previousWheelEvent.deltaY) !== Math.sign(event.deltaY)) {
+    return true;
+  }
   return false;
 };

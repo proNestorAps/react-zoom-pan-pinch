@@ -12,25 +12,33 @@ export const Example: React.FC<any> = (args: any) => {
           <div>
             <button
               className={styles.controlBtn}
-              onClick={() => zoomToElement("element1")}
+              onClick={() => {
+                zoomToElement("element1");
+              }}
             >
               Zoom to element 1
             </button>
             <button
               className={styles.controlBtn}
-              onClick={() => zoomToElement("element2")}
+              onClick={() => {
+                zoomToElement("element2");
+              }}
             >
               Zoom to element 2
             </button>
             <button
               className={styles.controlBtn}
-              onClick={() => zoomToElement("element3")}
+              onClick={() => {
+                zoomToElement("element3");
+              }}
             >
               Zoom to element 3
             </button>
             <button
               className={styles.controlBtn}
-              onClick={() => resetTransform()}
+              onClick={() => {
+                resetTransform();
+              }}
             >
               Reset
             </button>

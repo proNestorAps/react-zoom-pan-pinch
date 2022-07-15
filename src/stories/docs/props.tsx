@@ -3,13 +3,13 @@ import React from "react";
 import { initialSetup, initialState } from "../../constants/state.constants";
 import { animations } from "../../core/animations/animations.constants";
 
-export type ControlsOptionsType = {
+export interface ControlsOptionsType {
   name: React.ReactNode;
-  type: string[];
+  type: Array<string>;
   defaultValue: string;
   description: string;
   isObjectRow?: boolean;
-};
+}
 
 export type ComponentProps = Record<
   keyof Omit<ReactZoomPanPinchProps, "children">,
@@ -17,31 +17,34 @@ export type ComponentProps = Record<
   | Record<string, Omit<ControlsOptionsType, "name" | "isObjectRow">>
 >;
 
-const getPropsTable = (propsTable: any): ControlsOptionsType[] => {
-  return Object.keys(propsTable).reduce<ControlsOptionsType[]>((acc, key) => {
-    if (Array.isArray(propsTable[key]?.type)) {
-      acc.push({
-        ...propsTable[key],
-        name: key,
-      });
-    } else {
-      Object.keys(propsTable[key]).forEach((prop) => {
+const getPropsTable = (propsTable: any): Array<ControlsOptionsType> => {
+  return Object.keys(propsTable).reduce<Array<ControlsOptionsType>>(
+    (acc, key) => {
+      if (Array.isArray(propsTable[key]?.type)) {
         acc.push({
-          ...propsTable[key][prop],
-          isObjectRow: key === prop,
-          name:
-            key === prop ? (
-              <b>{prop}</b>
-            ) : (
-              <>
-                {key}.<b>{prop}</b>
-              </>
-            ),
+          ...propsTable[key],
+          name: key,
         });
-      });
-    }
-    return acc;
-  }, []);
+      } else {
+        Object.keys(propsTable[key]).forEach((prop) => {
+          acc.push({
+            ...propsTable[key][prop],
+            isObjectRow: key === prop,
+            name:
+              key === prop ? (
+                <b>{prop}</b>
+              ) : (
+                <>
+                  {key}.<b>{prop}</b>
+                </>
+              ),
+          });
+        });
+      }
+      return acc;
+    },
+    [],
+  );
 };
 
 export const componentPropsTable: Record<

@@ -41,7 +41,12 @@ export function handleCalculateVelocity(
   const { equalToMove } = setup.velocityAnimation;
 
   const now = Date.now();
-  if (lastMousePosition && velocityTime && wrapperComponent) {
+  if (
+    lastMousePosition !== null &&
+    velocityTime !== null &&
+    velocityTime !== 0 &&
+    wrapperComponent !== null
+  ) {
     const sizeMultiplier = getSizeMultiplier(wrapperComponent, equalToMove);
 
     const distanceX = position.x - lastMousePosition.x;
@@ -66,7 +71,12 @@ export function handleVelocityPanning(
   const { velocity, bounds, setup, wrapperComponent } = contextInstance;
   const isAllowed = isVelocityAllowed(contextInstance);
 
-  if (!isAllowed || !velocity || !bounds || !wrapperComponent) {
+  if (
+    !isAllowed ||
+    velocity === null ||
+    bounds === null ||
+    wrapperComponent === null
+  ) {
     return;
   }
 

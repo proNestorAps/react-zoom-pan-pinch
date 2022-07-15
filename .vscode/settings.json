@@ -1,5 +1,11 @@
 {
-  "cSpell.words": ["pronestor", "storysource", "syncyarnlock"],
+  "cSpell.words": [
+    "jsnext",
+    "pronestor",
+    "pronestoraps",
+    "storysource",
+    "syncyarnlock"
+  ],
   "editor.codeActionsOnSave": {
     "source.organizeImports": true
   },

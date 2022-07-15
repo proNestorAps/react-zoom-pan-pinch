@@ -18,23 +18,23 @@ export type ReactZoomPanPinchRef = {
   state: ReactZoomPanPinchState;
 } & ReactZoomPanPinchHandlers;
 
-export type ReactZoomPanPinchState = {
+export interface ReactZoomPanPinchState {
   previousScale: number;
   scale: number;
   positionX: number;
   positionY: number;
-};
+}
 
-export type ReactZoomPanPinchHandlers = {
+export interface ReactZoomPanPinchHandlers {
   zoomIn: ReturnType<typeof zoomIn>;
   zoomOut: ReturnType<typeof zoomOut>;
   setTransform: ReturnType<typeof setTransform>;
   resetTransform: ReturnType<typeof resetTransform>;
   centerView: ReturnType<typeof centerView>;
   zoomToElement: ReturnType<typeof zoomToElement>;
-};
+}
 
-export type ReactZoomPanPinchProps = {
+export interface ReactZoomPanPinchProps {
   children?: React.ReactNode | ((ref: ReactZoomPanPinchRef) => React.ReactNode);
   ref?: React.Ref<ReactZoomPanPinchRef>;
   initialScale?: number;
@@ -55,21 +55,21 @@ export type ReactZoomPanPinchProps = {
     disabled?: boolean;
     wheelDisabled?: boolean;
     touchPadDisabled?: boolean;
-    activationKeys?: string[];
-    excluded?: string[];
+    activationKeys?: Array<string>;
+    excluded?: Array<string>;
   };
   panning?: {
     disabled?: boolean;
     velocityDisabled?: boolean;
     lockAxisX?: boolean;
     lockAxisY?: boolean;
-    activationKeys?: string[];
-    excluded?: string[];
+    activationKeys?: Array<string>;
+    excluded?: Array<string>;
   };
   pinch?: {
     step?: number;
     disabled?: boolean;
-    excluded?: string[];
+    excluded?: Array<string>;
   };
   doubleClick?: {
     disabled?: boolean;
@@ -77,7 +77,7 @@ export type ReactZoomPanPinchProps = {
     mode?: "zoomIn" | "zoomOut" | "reset";
     animationTime?: number;
     animationType?: keyof typeof animations;
-    excluded?: string[];
+    excluded?: Array<string>;
   };
   zoomAnimation?: {
     disabled?: boolean;
@@ -128,11 +128,11 @@ export type ReactZoomPanPinchProps = {
     event: TouchEvent | MouseEvent,
   ) => void;
   onInit?: (ref: ReactZoomPanPinchRef) => void;
-};
+}
 
-export type ReactZoomPanPinchComponentHelpers = {
+export interface ReactZoomPanPinchComponentHelpers {
   setComponents: (wrapper: HTMLDivElement, content: HTMLDivElement) => void;
-};
+}
 
 export type LibrarySetup = Pick<
   ReactZoomPanPinchProps,

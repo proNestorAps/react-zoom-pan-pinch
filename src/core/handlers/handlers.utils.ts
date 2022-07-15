@@ -22,7 +22,7 @@ export const handleCalculateButtonZoom = (
   const { maxScale, minScale, zoomAnimation } = setup;
   const { size } = zoomAnimation;
 
-  if (!wrapperComponent) {
+  if (wrapperComponent === null) {
     throw new Error("Wrapper is not mounted");
   }
 
@@ -48,7 +48,10 @@ export function handleZoomToViewCenter(
   const { wrapperComponent } = contextInstance;
   const { scale, positionX, positionY } = contextInstance.transformState;
 
-  if (!wrapperComponent) return console.error("No WrapperComponent found");
+  if (wrapperComponent === null) {
+    console.error("No WrapperComponent found");
+    return;
+  }
 
   const wrapperWidth = wrapperComponent.offsetWidth;
   const wrapperHeight = wrapperComponent.offsetHeight;
@@ -64,10 +67,11 @@ export function handleZoomToViewCenter(
     mouseY,
   );
 
-  if (!targetState) {
-    return console.error(
+  if (targetState === undefined) {
+    console.error(
       "Error during zoom event. New transformation state was not calculated.",
     );
+    return;
   }
 
   animate(contextInstance, targetState, animationTime, animationType);
@@ -83,7 +87,9 @@ export function resetTransformations(
   const initialTransformation = createState(contextInstance.props);
   const { scale, positionX, positionY } = contextInstance.transformState;
 
-  if (!wrapperComponent) return;
+  if (wrapperComponent === null) {
+    return;
+  }
 
   const newBounds = calculateBounds(
     contextInstance,
@@ -124,7 +130,9 @@ export function calculateZoomToNode(
 ): { positionX: number; positionY: number; scale: number } {
   const { wrapperComponent } = contextInstance;
   const { limitToBounds, minScale, maxScale } = contextInstance.setup;
-  if (!wrapperComponent) return initialState;
+  if (wrapperComponent === null) {
+    return initialState;
+  }
 
   const wrapperRect = wrapperComponent.getBoundingClientRect();
   const nodeRect = getOffset(node);
@@ -138,7 +146,7 @@ export function calculateZoomToNode(
   const scaleY = wrapperComponent.offsetHeight / nodeHeight;
 
   const newScale = checkZoomBounds(
-    customZoom || Math.min(scaleX, scaleY),
+    customZoom ?? Math.min(scaleX, scaleY),
     minScale,
     maxScale,
     0,
@@ -166,37 +174,35 @@ export function calculateZoomToNode(
   return { positionX: x, positionY: y, scale: newScale };
 }
 
-function getOffset(element: HTMLElement): PositionType {
-  let el = element;
-
-  let offsetLeft = 0;
-  let offsetTop = 0;
-
-  while (el) {
-    offsetLeft += el.offsetLeft;
-    offsetTop += el.offsetTop;
-
-    el = el.offsetParent as HTMLElement;
+function getOffset(element: Element | null): PositionType {
+  if (element === null || !(element instanceof HTMLElement)) {
+    return {
+      x: 0,
+      y: 0,
+    };
   }
 
+  const parentOffset = getOffset(element.offsetParent);
+
   return {
-    x: offsetLeft,
-    y: offsetTop,
+    x: element.offsetLeft + parentOffset.x,
+    y: element.offsetTop + parentOffset.y,
   };
 }
 
-export function isValidZoomNode(node: HTMLElement | null): boolean {
-  if (!node) {
+export function isValidZoomNode(node: any): boolean {
+  if (node === null || node === undefined) {
     console.error("Zoom node not found");
     return false;
-  } else if (
-    node?.offsetWidth === undefined ||
-    node?.offsetHeight === undefined
+  }
+
+  if (
+    typeof node !== "object" ||
+    (!("offsetWidth" in node) && !("offsetHeight" in node))
   ) {
-    console.error(
-      "Zoom node is not valid - it must contain offsetWidth and offsetHeight",
-    );
+    console.error("Zoom node must contain offsetWidth and offsetHeight");
     return false;
   }
+
   return true;
 }

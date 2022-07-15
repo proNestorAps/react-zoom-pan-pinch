@@ -9,16 +9,36 @@ export const Controls: React.FC<ReactZoomPanPinchRef> = ({
   centerView,
 }: ReactZoomPanPinchRef) => (
   <div className={styles.controlPanel}>
-    <button className={styles.controlBtn} onClick={() => zoomIn()}>
+    <button
+      className={styles.controlBtn}
+      onClick={() => {
+        zoomIn();
+      }}
+    >
       Zoom In +
     </button>
-    <button className={styles.controlBtn} onClick={() => zoomOut()}>
+    <button
+      className={styles.controlBtn}
+      onClick={() => {
+        zoomOut();
+      }}
+    >
       Zoom Out -
     </button>
-    <button className={styles.controlBtn} onClick={() => resetTransform()}>
+    <button
+      className={styles.controlBtn}
+      onClick={() => {
+        resetTransform();
+      }}
+    >
       Reset
     </button>
-    <button className={styles.controlBtn} onClick={() => centerView()}>
+    <button
+      className={styles.controlBtn}
+      onClick={() => {
+        centerView();
+      }}
+    >
       Center
     </button>
   </div>

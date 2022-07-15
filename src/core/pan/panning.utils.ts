@@ -14,15 +14,19 @@ export const isPanningStartAllowed = (
   const { excluded } = contextInstance.setup.panning;
   const { isInitialized, wrapperComponent } = contextInstance;
 
-  const target = event.target as HTMLElement;
-  const isWrapperChild = wrapperComponent?.contains(target);
-  const isAllowed = isInitialized && target && isWrapperChild;
+  const target = event.target as HTMLElement | null;
+  const isWrapperChild = wrapperComponent?.contains(target) ?? false;
+  const isAllowed = isInitialized && target !== null && isWrapperChild;
 
-  if (!isAllowed) return false;
+  if (!isAllowed) {
+    return false;
+  }
 
   const isExcluded = isExcludedNode(target, excluded);
 
-  if (isExcluded) return false;
+  if (isExcluded) {
+    return false;
+  }
 
   return true;
 };
@@ -35,7 +39,9 @@ export const isPanningAllowed = (
 
   const isAllowed = isInitialized && isPanning && !disabled;
 
-  if (!isAllowed) return false;
+  if (!isAllowed) {
+    return false;
+  }
 
   return true;
 };
@@ -79,7 +85,13 @@ export function handlePanToBounds(
   const { disabled, limitToBounds, centerZoomedOut } = contextInstance.setup;
   const { wrapperComponent } = contextInstance;
 
-  if (disabled || !wrapperComponent || !contextInstance.bounds) return;
+  if (
+    disabled ||
+    wrapperComponent === null ||
+    contextInstance.bounds === null
+  ) {
+    return;
+  }
 
   const { maxPositionX, minPositionX, maxPositionY, minPositionY } =
     contextInstance.bounds;
@@ -90,11 +102,11 @@ export function handlePanToBounds(
   const mousePosX =
     positionX > maxPositionX
       ? wrapperComponent.offsetWidth
-      : contextInstance.setup.minPositionX || 0;
+      : contextInstance.setup.minPositionX ?? 0;
   const mousePosY =
     positionY > maxPositionY
       ? wrapperComponent.offsetHeight
-      : contextInstance.setup.minPositionY || 0;
+      : contextInstance.setup.minPositionY ?? 0;
 
   const { x, y } = handleCalculateZoomPositions(
     contextInstance,
@@ -120,7 +132,9 @@ export function handlePaddingAnimation(
   const { scale } = contextInstance.transformState;
   const { sizeX, sizeY } = contextInstance.setup.alignmentAnimation;
 
-  if (!sizeX && !sizeY) return;
+  if (sizeX === 0 && sizeY === 0) {
+    return;
+  }
 
   contextInstance.setTransformState(scale, positionX, positionY);
 }
@@ -141,7 +155,7 @@ export function handleNewPosition(
 
   const hasNewPosition = !hasPositionXChanged || !hasPositionYChanged;
 
-  if (!wrapperComponent || hasNewPosition || !bounds) {
+  if (wrapperComponent === null || hasNewPosition || bounds === null) {
     return;
   }
 
@@ -168,7 +182,7 @@ export const getPanningClientPosition = (
   const { lockAxisX, lockAxisY } = panning;
   const { positionX, positionY } = transformState;
 
-  if (!startCoords) {
+  if (startCoords === null) {
     return { x: positionX, y: positionY };
   }
 

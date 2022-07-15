@@ -14,7 +14,9 @@ const handleCancelAnimationFrame = (animation: AnimationType | null) => {
 export const handleCancelAnimation = (
   contextInstance: ReactZoomPanPinchContext,
 ): void => {
-  if (!contextInstance.mounted) return;
+  if (!contextInstance.mounted) {
+    return;
+  }
   handleCancelAnimationFrame(contextInstance.animation);
   // Clear animation state
   contextInstance.animate = false;
@@ -28,7 +30,9 @@ export function handleSetupAnimation(
   animationTime: number,
   callback: (step: number) => void,
 ): void {
-  if (!contextInstance.mounted) return;
+  if (!contextInstance.mounted) {
+    return;
+  }
   const startTime = new Date().getTime();
   const lastStep = 1;
 
@@ -38,7 +42,8 @@ export function handleSetupAnimation(
   // new animation
   contextInstance.animation = () => {
     if (!contextInstance.mounted) {
-      return handleCancelAnimationFrame(contextInstance.animation);
+      handleCancelAnimationFrame(contextInstance.animation);
+      return;
     }
 
     const frameTime = new Date().getTime() - startTime;
@@ -50,7 +55,7 @@ export function handleSetupAnimation(
     if (frameTime >= animationTime) {
       callback(lastStep);
       contextInstance.animation = null;
-    } else if (contextInstance.animation) {
+    } else if (contextInstance.animation !== null) {
       callback(step);
       requestAnimationFrame(contextInstance.animation);
     }
@@ -66,7 +71,9 @@ export function animate(
   animationName: string,
 ): void {
   const isValid = isValidTargetState(targetState);
-  if (!contextInstance.mounted || !isValid) return;
+  if (!contextInstance.mounted || !isValid) {
+    return;
+  }
   const { setTransformState } = contextInstance;
   const { scale, positionX, positionY } = contextInstance.transformState;
 

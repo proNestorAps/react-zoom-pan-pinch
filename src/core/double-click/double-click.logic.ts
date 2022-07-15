@@ -15,16 +15,22 @@ export function handleDoubleClick(
   const { disabled, mode, step, animationTime, animationType } =
     contextInstance.setup.doubleClick;
 
-  if (disabled) return;
+  if (disabled) {
+    return;
+  }
 
   if (mode === "reset") {
-    return resetTransformations(contextInstance, animationTime, animationType);
+    resetTransformations(contextInstance, animationTime, animationType);
+    return;
   }
 
   const { scale } = contextInstance.transformState;
   const { contentComponent } = contextInstance;
 
-  if (!contentComponent) return console.error("No ContentComponent found");
+  if (contentComponent === null) {
+    console.error("No ContentComponent found");
+    return;
+  }
 
   const delta = mode === "zoomOut" ? -1 : 1;
 
@@ -37,10 +43,11 @@ export function handleDoubleClick(
     mousePosition.y,
   );
 
-  if (!targetState) {
-    return console.error(
+  if (targetState === undefined) {
+    console.error(
       "Error during zoom event. New transformation state was not calculated.",
     );
+    return;
   }
 
   animate(contextInstance, targetState, animationTime, animationType);
@@ -53,17 +60,20 @@ export const isDoubleClickAllowed = (
   const { isInitialized, setup, wrapperComponent } = contextInstance;
   const { disabled, excluded } = setup.doubleClick;
 
-  const target = event.target as HTMLElement;
-  const isWrapperChild = wrapperComponent?.contains(target);
-  const isAllowed = isInitialized && target && isWrapperChild && !disabled;
+  const target = event.target as HTMLElement | null;
+  const isWrapperChild = wrapperComponent?.contains(target) ?? false;
+  const isAllowed =
+    isInitialized && target !== null && isWrapperChild && !disabled;
 
-  if (!isAllowed) return false;
+  if (!isAllowed) {
+    return false;
+  }
 
   const isExcluded = isExcludedNode(target, excluded);
 
-  if (isExcluded) return false;
-
-  if (!isAllowed) return false;
+  if (isExcluded) {
+    return false;
+  }
 
   return true;
 };

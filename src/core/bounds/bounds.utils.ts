@@ -65,7 +65,7 @@ export const calculateBounds = (
   const { wrapperComponent, contentComponent } = contextInstance;
   const { centerZoomedOut } = contextInstance.setup;
 
-  if (!wrapperComponent || !contentComponent) {
+  if (wrapperComponent === null || contentComponent === null) {
     throw new Error("Components are not mounted");
   }
 
@@ -115,7 +115,7 @@ export function getMouseBoundedPosition(
   let paddingX = 0;
   let paddingY = 0;
 
-  if (wrapperComponent) {
+  if (wrapperComponent !== null) {
     paddingX = paddingValueX;
     paddingY = paddingValueY;
   }
@@ -149,8 +149,14 @@ export const boundLimiter = (
   maxBound: number,
   isActive: boolean,
 ): number => {
-  if (!isActive) return roundNumber(value, 2);
-  if (value < minBound) return roundNumber(minBound, 2);
-  if (value > maxBound) return roundNumber(maxBound, 2);
+  if (!isActive) {
+    return roundNumber(value, 2);
+  }
+  if (value < minBound) {
+    return roundNumber(minBound, 2);
+  }
+  if (value > maxBound) {
+    return roundNumber(maxBound, 2);
+  }
   return roundNumber(value, 2);
 };

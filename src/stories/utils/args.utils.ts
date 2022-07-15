@@ -6,7 +6,7 @@ export const normalizeArgs = (args: { [key: string]: any }): any => {
     const isNested = normalizedKey.length === 2;
 
     if (isNested) {
-      if (!newArgs[normalizedKey[0]]) {
+      if (typeof newArgs[normalizedKey[0]] !== "object") {
         newArgs[normalizedKey[0]] = {};
       }
       newArgs[normalizedKey[0]][normalizedKey[1]] = args[key];
@@ -17,17 +17,17 @@ export const normalizeArgs = (args: { [key: string]: any }): any => {
 
   return {
     ...newArgs,
-    onWheelStart: undefined,
-    onWheel: undefined,
-    onWheelStop: undefined,
-    onZoomStart: undefined,
-    onZoom: undefined,
-    onZoomStop: undefined,
-    onPanningStart: undefined,
     onPanning: undefined,
+    onPanningStart: undefined,
     onPanningStop: undefined,
-    onPinchStart: undefined,
     onPinch: undefined,
+    onPinchStart: undefined,
     onPinchStop: undefined,
+    onWheel: undefined,
+    onWheelStart: undefined,
+    onWheelStop: undefined,
+    onZoom: undefined,
+    onZoomStart: undefined,
+    onZoomStop: undefined,
   };
 };
