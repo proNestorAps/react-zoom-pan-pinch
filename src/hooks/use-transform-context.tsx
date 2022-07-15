@@ -6,7 +6,7 @@ import { ReactZoomPanPinchRef } from "../models";
 const useTransformContext = (): ReactZoomPanPinchRef => {
   const libraryContext = useContext(Context);
 
-  if (!libraryContext.contextInstance) {
+  if (libraryContext.contextInstance === null) {
     throw new Error("Transform context mus be placed inside TransformWrapper");
   }
 

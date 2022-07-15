@@ -1,31 +1,25 @@
 export const isExcludedNode = (
   node: HTMLElement,
-  excluded: Array<string>,
+  excludedTagsOrClassNames: Array<string>,
 ): boolean => {
   const targetTagName = node.tagName.toUpperCase();
-  const isExcludedTag = excluded.find(
+  const isExcludedTag = excludedTagsOrClassNames.some(
     (tag) => tag.toUpperCase() === targetTagName,
   );
-
   if (isExcludedTag) {
     return true;
   }
 
-  const isExcludedClassName = excluded.find((className) =>
+  const containsExcludedCssClass = excludedTagsOrClassNames.some((className) =>
     node.classList.contains(className),
   );
-
-  if (isExcludedClassName) {
-    return true;
-  }
-
-  return false;
+  return containsExcludedCssClass;
 };
 
 export const cancelTimeout = (
   timeout: ReturnType<typeof setTimeout> | null,
 ): void => {
-  if (timeout) {
+  if (timeout !== null) {
     clearTimeout(timeout);
   }
 };

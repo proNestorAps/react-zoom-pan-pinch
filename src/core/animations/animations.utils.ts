@@ -55,7 +55,7 @@ export function handleSetupAnimation(
     if (frameTime >= animationTime) {
       callback(lastStep);
       contextInstance.animation = null;
-    } else if (contextInstance.animation) {
+    } else if (contextInstance.animation !== null) {
       callback(step);
       requestAnimationFrame(contextInstance.animation);
     }

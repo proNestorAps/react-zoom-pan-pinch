@@ -47,8 +47,6 @@ import {
   makePassiveEventOption,
 } from "../utils";
 
-type StartCoordsType = { x: number; y: number } | null;
-
 const Context = React.createContext(contextInitialState);
 
 class TransformContext extends Component<
@@ -74,7 +72,7 @@ class TransformContext extends Component<
   public wheelAnimationTimer: ReturnType<typeof setTimeout> | null = null;
   // panning helpers
   public isPanning = false;
-  public startCoords: StartCoordsType = null;
+  public startCoords: PositionType | null = null;
   public lastTouch: number | null = null;
   // pinch helpers
   public distance: null | number = null;
@@ -298,7 +296,7 @@ class TransformContext extends Component<
   onPinchStop = (event: TouchEvent): void => {
     const { onPinchingStop, onZoomStop } = this.props;
 
-    if (this.pinchStartScale) {
+    if (this.pinchStartScale !== null && this.pinchStartScale !== 0) {
       handlePinchStop(this);
       handleCallback(getContext(this), event, onPinchingStop);
       handleCallback(getContext(this), event, onZoomStop);
@@ -324,7 +322,7 @@ class TransformContext extends Component<
     }
 
     const isDoubleTap =
-      this.lastTouch && new Date().valueOf() - this.lastTouch < 200;
+      this.lastTouch !== null && new Date().valueOf() - this.lastTouch < 200;
 
     if (isDoubleTap && event.touches.length === 1) {
       this.onDoubleClick(event);
@@ -416,10 +414,10 @@ class TransformContext extends Component<
   };
 
   isPressingKeys = (keys: Array<string>): boolean => {
-    if (!keys.length) {
+    if (keys.length === 0) {
       return true;
     }
-    return Boolean(keys.find((key) => this.pressedKeys[key]));
+    return keys.some((key) => this.pressedKeys[key]);
   };
 
   setComponents = (
@@ -456,7 +454,7 @@ class TransformContext extends Component<
   };
 
   setCenter = (): void => {
-    if (this.wrapperComponent && this.contentComponent) {
+    if (this.wrapperComponent !== null && this.contentComponent !== null) {
       const targetState = getCenterPosition(
         this.transformState.scale,
         this.wrapperComponent,
@@ -471,7 +469,7 @@ class TransformContext extends Component<
   };
 
   applyTransformation = (): void => {
-    if (!this.mounted || !this.contentComponent) {
+    if (!this.mounted || this.contentComponent === null) {
       return;
     }
     const { scale, positionX, positionY } = this.transformState;

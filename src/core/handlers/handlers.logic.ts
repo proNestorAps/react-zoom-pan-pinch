@@ -54,7 +54,7 @@ export const setTransform =
     const { wrapperComponent, contentComponent } = contextInstance;
     const { disabled } = contextInstance.setup;
 
-    if (disabled || !wrapperComponent || !contentComponent) {
+    if (disabled || wrapperComponent === null || contentComponent === null) {
       return;
     }
 
@@ -85,9 +85,9 @@ export const centerView =
   ): void => {
     const { transformState, wrapperComponent, contentComponent } =
       contextInstance;
-    if (wrapperComponent && contentComponent) {
+    if (wrapperComponent !== null && contentComponent !== null) {
       const targetState = getCenterPosition(
-        scale || transformState.scale,
+        scale === undefined || scale === 0 ? transformState.scale : scale,
         wrapperComponent,
         contentComponent,
       );
@@ -112,9 +112,9 @@ export const zoomToElement =
       typeof node === "string" ? document.getElementById(node) : node;
 
     if (
-      wrapperComponent &&
+      wrapperComponent !== null &&
       isValidZoomNode(target) &&
-      target &&
+      target !== null &&
       wrapperComponent.contains(target)
     ) {
       const targetState = calculateZoomToNode(contextInstance, target, scale);

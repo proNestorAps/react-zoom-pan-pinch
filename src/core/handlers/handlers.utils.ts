@@ -22,7 +22,7 @@ export const handleCalculateButtonZoom = (
   const { maxScale, minScale, zoomAnimation } = setup;
   const { size } = zoomAnimation;
 
-  if (!wrapperComponent) {
+  if (wrapperComponent === null) {
     throw new Error("Wrapper is not mounted");
   }
 
@@ -48,7 +48,7 @@ export function handleZoomToViewCenter(
   const { wrapperComponent } = contextInstance;
   const { scale, positionX, positionY } = contextInstance.transformState;
 
-  if (!wrapperComponent) {
+  if (wrapperComponent === null) {
     console.error("No WrapperComponent found");
     return;
   }
@@ -67,7 +67,7 @@ export function handleZoomToViewCenter(
     mouseY,
   );
 
-  if (!targetState) {
+  if (targetState === undefined) {
     console.error(
       "Error during zoom event. New transformation state was not calculated.",
     );
@@ -87,7 +87,7 @@ export function resetTransformations(
   const initialTransformation = createState(contextInstance.props);
   const { scale, positionX, positionY } = contextInstance.transformState;
 
-  if (!wrapperComponent) {
+  if (wrapperComponent === null) {
     return;
   }
 
@@ -130,7 +130,7 @@ export function calculateZoomToNode(
 ): { positionX: number; positionY: number; scale: number } {
   const { wrapperComponent } = contextInstance;
   const { limitToBounds, minScale, maxScale } = contextInstance.setup;
-  if (!wrapperComponent) {
+  if (wrapperComponent === null) {
     return initialState;
   }
 
@@ -146,7 +146,7 @@ export function calculateZoomToNode(
   const scaleY = wrapperComponent.offsetHeight / nodeHeight;
 
   const newScale = checkZoomBounds(
-    customZoom || Math.min(scaleX, scaleY),
+    customZoom ?? Math.min(scaleX, scaleY),
     minScale,
     maxScale,
     0,
@@ -191,17 +191,18 @@ function getOffset(element: Element | null): PositionType {
 }
 
 export function isValidZoomNode(node: any): boolean {
-  if (!node) {
+  if (node === null || node === undefined) {
     console.error("Zoom node not found");
     return false;
-  } else if (
-    node.offsetWidth === undefined ||
-    node.offsetHeight === undefined
+  }
+
+  if (
+    typeof node !== "object" ||
+    (!("offsetWidth" in node) && !("offsetHeight" in node))
   ) {
-    console.error(
-      "Zoom node is not valid - it must contain offsetWidth and offsetHeight",
-    );
+    console.error("Zoom node must contain offsetWidth and offsetHeight");
     return false;
   }
+
   return true;
 }

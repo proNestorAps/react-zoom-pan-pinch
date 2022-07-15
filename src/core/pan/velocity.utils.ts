@@ -31,7 +31,7 @@ export const isVelocityAllowed = (
   if (!isAllowed) {
     return false;
   }
-  if (!velocity || !bounds) {
+  if (velocity === null || bounds === null) {
     return false;
   }
 

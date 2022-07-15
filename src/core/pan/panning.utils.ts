@@ -15,8 +15,8 @@ export const isPanningStartAllowed = (
   const { isInitialized, wrapperComponent } = contextInstance;
 
   const target = event.target as HTMLElement | null;
-  const isWrapperChild = wrapperComponent?.contains(target);
-  const isAllowed = isInitialized && target && isWrapperChild;
+  const isWrapperChild = wrapperComponent?.contains(target) ?? false;
+  const isAllowed = isInitialized && target !== null && isWrapperChild;
 
   if (!isAllowed) {
     return false;
@@ -85,7 +85,11 @@ export function handlePanToBounds(
   const { disabled, limitToBounds, centerZoomedOut } = contextInstance.setup;
   const { wrapperComponent } = contextInstance;
 
-  if (disabled || !wrapperComponent || !contextInstance.bounds) {
+  if (
+    disabled ||
+    wrapperComponent === null ||
+    contextInstance.bounds === null
+  ) {
     return;
   }
 
@@ -98,11 +102,11 @@ export function handlePanToBounds(
   const mousePosX =
     positionX > maxPositionX
       ? wrapperComponent.offsetWidth
-      : contextInstance.setup.minPositionX || 0;
+      : contextInstance.setup.minPositionX ?? 0;
   const mousePosY =
     positionY > maxPositionY
       ? wrapperComponent.offsetHeight
-      : contextInstance.setup.minPositionY || 0;
+      : contextInstance.setup.minPositionY ?? 0;
 
   const { x, y } = handleCalculateZoomPositions(
     contextInstance,
@@ -128,7 +132,7 @@ export function handlePaddingAnimation(
   const { scale } = contextInstance.transformState;
   const { sizeX, sizeY } = contextInstance.setup.alignmentAnimation;
 
-  if (!sizeX && !sizeY) {
+  if (sizeX === 0 && sizeY === 0) {
     return;
   }
 
@@ -151,7 +155,7 @@ export function handleNewPosition(
 
   const hasNewPosition = !hasPositionXChanged || !hasPositionYChanged;
 
-  if (!wrapperComponent || hasNewPosition || !bounds) {
+  if (wrapperComponent === null || hasNewPosition || bounds === null) {
     return;
   }
 
@@ -178,7 +182,7 @@ export const getPanningClientPosition = (
   const { lockAxisX, lockAxisY } = panning;
   const { positionX, positionY } = transformState;
 
-  if (!startCoords) {
+  if (startCoords === null) {
     return { x: positionX, y: positionY };
   }
 

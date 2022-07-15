@@ -64,6 +64,20 @@ module.exports = {
 
         // Do not allow unnecessary checks for null.
         "@typescript-eslint/no-unnecessary-condition": "warn",
+
+        // Require explicit boolean expressions to avoid the ambiguities that JavaScript has, https://dorey.github.io/JavaScript-Equality-Table/#if-statement.
+        "@typescript-eslint/strict-boolean-expressions": [
+          "warn",
+          {
+            allowString: false,
+            allowNumber: false,
+            allowNullableObject: false,
+            allowNullableBoolean: false,
+            allowNullableString: false,
+            allowNullableNumber: false,
+            allowAny: false,
+          },
+        ],
       },
     },
   ],

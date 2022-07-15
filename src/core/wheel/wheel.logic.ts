@@ -22,7 +22,7 @@ export const handleWheelStart = (
 ): void => {
   const { onWheelStart, onZoomStart } = contextInstance.props;
 
-  if (!contextInstance.wheelStopEventTimer) {
+  if (contextInstance.wheelStopEventTimer === null) {
     handleCancelAnimation(contextInstance);
     handleCallback(getContext(contextInstance), event, onWheelStart);
     handleCallback(getContext(contextInstance), event, onZoomStart);
@@ -41,7 +41,7 @@ export const handleWheelZoom = (
   const { size, disabled } = zoomAnimation;
   const { step } = wheel;
 
-  if (!contentComponent) {
+  if (contentComponent === null) {
     throw new Error("Component not mounted");
   }
 

@@ -27,7 +27,7 @@ export function handleDoubleClick(
   const { scale } = contextInstance.transformState;
   const { contentComponent } = contextInstance;
 
-  if (!contentComponent) {
+  if (contentComponent === null) {
     console.error("No ContentComponent found");
     return;
   }
@@ -43,7 +43,7 @@ export function handleDoubleClick(
     mousePosition.y,
   );
 
-  if (!targetState) {
+  if (targetState === undefined) {
     console.error(
       "Error during zoom event. New transformation state was not calculated.",
     );
@@ -61,8 +61,9 @@ export const isDoubleClickAllowed = (
   const { disabled, excluded } = setup.doubleClick;
 
   const target = event.target as HTMLElement | null;
-  const isWrapperChild = wrapperComponent?.contains(target);
-  const isAllowed = isInitialized && target && isWrapperChild && !disabled;
+  const isWrapperChild = wrapperComponent?.contains(target) ?? false;
+  const isAllowed =
+    isInitialized && target !== null && isWrapperChild && !disabled;
 
   if (!isAllowed) {
     return false;

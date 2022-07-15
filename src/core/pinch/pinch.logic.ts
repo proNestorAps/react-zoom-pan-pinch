@@ -34,7 +34,7 @@ export const handlePinchZoom = (
   const { disabled, size } = zoomAnimation;
 
   // if one finger starts from outside of wrapper
-  if (pinchStartDistance === null || !contentComponent) {
+  if (pinchStartDistance === null || contentComponent === null) {
     return;
   }
 

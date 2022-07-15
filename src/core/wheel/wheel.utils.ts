@@ -10,12 +10,12 @@ export const isWheelAllowed = (
     contextInstance.setup.wheel;
   const { isInitialized, isPanning } = contextInstance;
 
-  const target = event.target as HTMLElement;
-  const isAllowed = isInitialized && !isPanning && !disabled && target;
-
+  const target = event.target as HTMLElement | null;
+  const isAllowed = isInitialized && !isPanning && !disabled && target !== null;
   if (!isAllowed) {
     return false;
   }
+
   // Event ctrlKey detects if touchpad action is executing wheel or pinch gesture
   if (wheelDisabled && !event.ctrlKey) {
     return false;
@@ -84,13 +84,13 @@ export const handleCalculateWheelZoom = (
   const { maxScale, minScale, zoomAnimation } = setup;
   const { size, disabled } = zoomAnimation;
 
-  if (!wrapperComponent) {
+  if (wrapperComponent === null) {
     throw new Error("Wrapper is not mounted");
   }
 
   const targetScale = scale + delta * (scale - scale * step) * step;
 
-  if (getTarget) {
+  if (getTarget === true) {
     return targetScale;
   }
   const paddingEnabled = disablePadding ? false : !disabled;
@@ -112,7 +112,7 @@ export const handleWheelZoomStop = (
   const { scale } = contextInstance.transformState;
   const { maxScale, minScale } = contextInstance.setup;
 
-  if (!previousWheelEvent) {
+  if (previousWheelEvent === null) {
     return false;
   }
   if (scale < maxScale || scale > minScale) {

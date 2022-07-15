@@ -65,7 +65,7 @@ export const calculateBounds = (
   const { wrapperComponent, contentComponent } = contextInstance;
   const { centerZoomedOut } = contextInstance.setup;
 
-  if (!wrapperComponent || !contentComponent) {
+  if (wrapperComponent === null || contentComponent === null) {
     throw new Error("Components are not mounted");
   }
 
@@ -115,7 +115,7 @@ export function getMouseBoundedPosition(
   let paddingX = 0;
   let paddingY = 0;
 
-  if (wrapperComponent) {
+  if (wrapperComponent !== null) {
     paddingX = paddingValueX;
     paddingY = paddingValueY;
   }

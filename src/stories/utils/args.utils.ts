@@ -6,7 +6,7 @@ export const normalizeArgs = (args: { [key: string]: any }): any => {
     const isNested = normalizedKey.length === 2;
 
     if (isNested) {
-      if (!newArgs[normalizedKey[0]]) {
+      if (typeof newArgs[normalizedKey[0]] !== "object") {
         newArgs[normalizedKey[0]] = {};
       }
       newArgs[normalizedKey[0]][normalizedKey[1]] = args[key];

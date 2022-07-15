@@ -9,9 +9,8 @@ export const isPinchStartAllowed = (
   const { disabled, excluded } = contextInstance.setup.pinch;
   const { isInitialized } = contextInstance;
 
-  const target = event.target as HTMLElement;
-  const isAllowed = isInitialized && !disabled && target;
-
+  const target = event.target as HTMLElement | null;
+  const isAllowed = isInitialized && !disabled && target !== null;
   if (!isAllowed) {
     return false;
   }
@@ -31,7 +30,11 @@ export const isPinchAllowed = (
   const { disabled } = contextInstance.setup.pinch;
   const { isInitialized, pinchStartDistance } = contextInstance;
 
-  const isAllowed = isInitialized && !disabled && pinchStartDistance;
+  const isAllowed =
+    isInitialized &&
+    !disabled &&
+    pinchStartDistance !== null &&
+    pinchStartDistance !== 0;
 
   if (!isAllowed) {
     return false;
@@ -73,7 +76,13 @@ export const calculatePinchZoom = (
   const { maxScale, minScale, zoomAnimation } = setup;
   const { size, disabled } = zoomAnimation;
 
-  if (!pinchStartScale || pinchStartDistance === null || !currentDistance) {
+  if (
+    pinchStartScale === null ||
+    pinchStartScale === 0 ||
+    pinchStartDistance === null ||
+    pinchStartDistance === 0 ||
+    currentDistance === 0
+  ) {
     throw new Error("Pinch touches distance was not provided");
   }
 
