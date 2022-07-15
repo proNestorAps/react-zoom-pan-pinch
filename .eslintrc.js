@@ -59,6 +59,9 @@ module.exports = {
         // Prefer interfaces over types.
         "@typescript-eslint/consistent-type-definitions": ["warn", "interface"],
 
+        // Require that all possible values are handled by switch statements.
+        "@typescript-eslint/switch-exhaustiveness-check": "warn",
+
         // Require explicit accessibility modifiers since everything is public by default.
         "@typescript-eslint/explicit-member-accessibility": "warn",
 
@@ -67,6 +70,20 @@ module.exports = {
 
         // Do not allow unnecessary checks for null.
         "@typescript-eslint/no-unnecessary-condition": "warn",
+
+        // Prefer template strings over concatenating with plus.
+        "prefer-template": "warn",
+
+        // Only allow unused variables that are prefixed with an underscore. Use an ESLint rule instead of TypeScript's noUnusedLocals and noUnusedParameters to allow unused items when developing
+        "@typescript-eslint/no-unused-vars": [
+          "warn",
+          {
+            args: "all",
+            argsIgnorePattern: "^_",
+            vars: "all",
+            varsIgnorePattern: "^_",
+          },
+        ],
 
         // Require explicit boolean expressions to avoid the ambiguities that JavaScript has, https://dorey.github.io/JavaScript-Equality-Table/#if-statement.
         "@typescript-eslint/strict-boolean-expressions": [
