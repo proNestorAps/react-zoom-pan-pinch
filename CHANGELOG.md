@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Add a handful of ESLint rules.
 - Update dependencies.
 
 ## Version 2.3.0
