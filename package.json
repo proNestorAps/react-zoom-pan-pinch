@@ -53,7 +53,7 @@
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.2.5",
     "cross-env": "^7.0.3",
-    "eslint": "^8.19.0",
+    "eslint": "^8.21.0",
     "eslint-plugin-prettier": "^4.2.1",
     "postcss": "^8.4.14",
     "prettier": "^2.7.1",
