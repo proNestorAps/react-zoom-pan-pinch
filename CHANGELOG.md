@@ -1,7 +1,8 @@
 # CHANGELOG
 
-## Unreleased
+## Version 2.4.0
 
+- Use the CSS matrix() function instead of translate3d() because this fixes a scaling issue in Safari. More information in the original [pull request #287 for prc5/react-zoom-pan-pinch](https://github.com/prc5/react-zoom-pan-pinch/pull/287).
 - Add a handful of ESLint rules.
 - Update dependencies.
 
