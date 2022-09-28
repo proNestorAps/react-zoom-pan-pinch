@@ -84,13 +84,11 @@ body td > pre.prism-code {
   display: flex;
   flex-wrap: wrap;
   height: -moz-fit-content;
-  height: -webkit-fit-content;
   height: fit-content;
   margin: 0;
   padding: 0;
   transform-origin: 0% 0%;
   width: -moz-fit-content;
-  width: -webkit-fit-content;
   width: fit-content;
 }
 
@@ -100,7 +98,6 @@ body td > pre.prism-code {
 
 .transform-component_wrapper__KpIt1 {
   height: -moz-fit-content;
-  height: -webkit-fit-content;
   height: fit-content;
   margin: 0;
   overflow: hidden;
@@ -113,9 +110,8 @@ body td > pre.prism-code {
   -webkit-user-select: none;
   user-select: none;
   width: -moz-fit-content;
-  width: -webkit-fit-content;
   width: fit-content;
 }
 
 
-/*# sourceMappingURL=main.a60df612.css.map*/
+/*# sourceMappingURL=main.c1c19d31.css.map*/
