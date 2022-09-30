@@ -1,6 +1,6 @@
 {
   "name": "@pronestor/react-zoom-pan-pinch",
-  "version": "2.4.0",
+  "version": "2.4.1",
   "description": "React package for zooming, panning and pinching html elements in an easy way.",
   "author": "Pronestor",
   "license": "MIT",
@@ -22,6 +22,7 @@
     "build": "rollup --config",
     "check-formatting": "prettier --check \"(.storybook|src)/**/*.+(js|json|ts|tsx)\" \"*.+(js|json|ts|tsx)\"",
     "check-linting": "eslint src/ --ext .js,.jsx,.tsx,.ts --format unix",
+    "prepublishOnly": "npm run build",
     "start": "start-storybook --port 6006",
     "update-dependencies": "yarn upgrade && npx syncyarnlock --keepPrefix --save && yarn install"
   },
