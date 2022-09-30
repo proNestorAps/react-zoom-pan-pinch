@@ -22,7 +22,9 @@ export function handlePanningStart(
 
   handleCancelAnimation(contextInstance);
   handleCalculateBounds(contextInstance, scale);
-  if (event instanceof TouchEvent) {
+  // TouchEvent is not defined in Safari.
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  if (window.TouchEvent !== undefined && event instanceof TouchEvent) {
     handleTouchPanningSetup(contextInstance, event as TouchEvent);
   } else {
     handlePanningSetup(contextInstance, event as MouseEvent);
