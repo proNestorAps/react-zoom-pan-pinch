@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Unreleased
+
+- Include changelog and readme in the package.
+
 ## Version 2.4.2
 
 - Handle TouchEvent not being defined in Safari.

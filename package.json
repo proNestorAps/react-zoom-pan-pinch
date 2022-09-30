@@ -73,7 +73,9 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "CHANGELOG.md",
+    "README.md"
   ],
   "keywords": [
     "pan",
