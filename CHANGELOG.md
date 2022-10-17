@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Include changelog and readme in the package.
+- Include the changelog and the readme in the package.
 - Update dependencies.
 
 ## Version 2.4.2
