@@ -150,12 +150,9 @@ export function handleNewPosition(
   const { wrapperComponent, bounds } = contextInstance;
   const { scale, positionX, positionY } = contextInstance.transformState;
 
-  const hasNewXPosition = newPositionX !== positionX;
-  const hasNewYPosition = newPositionY !== positionY;
-
   if (
     wrapperComponent === null ||
-    (!hasNewXPosition && !hasNewYPosition) ||
+    (!(newPositionX !== positionX) && !(newPositionY !== positionY)) ||
     bounds === null
   ) {
     return;
