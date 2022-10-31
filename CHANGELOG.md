@@ -1,8 +1,9 @@
 # CHANGELOG
 
-## Unreleased
+## Version 2.4.3
 
 - Include the changelog and the readme in the package.
+- Fixed [this bug](https://github.com/prc5/react-zoom-pan-pinch/pull/247) in the logic that determines if an object has been moved.
 - Update dependencies.
 
 ## Version 2.4.2
