@@ -1,6 +1,6 @@
 {
   "name": "@pronestor/react-zoom-pan-pinch",
-  "version": "2.4.2",
+  "version": "2.4.3",
   "description": "React package for zooming, panning and pinching html elements in an easy way.",
   "author": "Pronestor",
   "license": "MIT",
