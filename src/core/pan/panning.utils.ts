@@ -152,9 +152,12 @@ export function handleNewPosition(
 
   const hasNewXPosition = newPositionX !== positionX;
   const hasNewYPosition = newPositionY !== positionY;
-  const hasNewPosition = hasNewXPosition || hasNewYPosition;
 
-  if (wrapperComponent === null || !hasNewPosition || bounds === null) {
+  if (
+    wrapperComponent === null ||
+    !(hasNewXPosition || hasNewYPosition) ||
+    bounds === null
+  ) {
     return;
   }
 
