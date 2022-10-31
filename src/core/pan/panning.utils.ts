@@ -155,7 +155,7 @@ export function handleNewPosition(
 
   if (
     wrapperComponent === null ||
-    !(hasNewXPosition || hasNewYPosition) ||
+    (!hasNewXPosition && !hasNewYPosition) ||
     bounds === null
   ) {
     return;
