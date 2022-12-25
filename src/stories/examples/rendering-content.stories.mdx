@@ -1,10 +1,8 @@
 import { Meta, Story, ArgsTable, Canvas } from "@storybook/addon-docs/blocks";
 import { action } from "@storybook/addon-actions";
-import { TransformWrapper } from "../../../components/transform-wrapper";
-import { argsTypes } from "../../types/args.types";
-import { Example } from "./example";
-
-export const Template = (args) => <Example {...args} />;
+import { TransformWrapper } from "../../components/transform-wrapper";
+import { argsTypes } from "../types/args.types";
+import { RenderingContentTemplate } from "./rendering-content-template";
 
 <Meta
   title="Examples/Rerendering content"
@@ -33,7 +31,9 @@ export const Template = (args) => <Example {...args} />;
 ### Preview:
 
 <Canvas>
-  <Story name="Rerendering content">{(args) => <Template {...args} />}</Story>
+  <Story name="Rerendering content">
+    {(args) => <RenderingContentTemplate {...args} />}
+  </Story>
 </Canvas>
 
 ## Component API
