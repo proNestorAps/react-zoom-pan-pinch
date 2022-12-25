@@ -9,10 +9,10 @@ module.exports = {
   extends: ["react-app"],
   rules: {
     // Always wrap in curly braces, even one-liners.
-    curly: ["warn", "all"],
+    "curly": ["warn", "all"],
 
     // Always use strict equality comparison, that is === or !==.
-    eqeqeq: ["warn", "always"],
+    "eqeqeq": ["warn", "always"],
 
     // Do not allow alert boxes.
     "no-alert": "warn",
@@ -30,15 +30,22 @@ module.exports = {
     "prefer-const": "warn",
 
     // Do not allow backtick strings unless they are template strings.
-    quotes: ["warn", "double"],
+    "quotes": ["warn", "double"],
   },
   overrides: [
     {
       // Rules that apply to JavaScript files in the root folder.
-      files: ["./*.js"],
+      files: ["./*.mjs", "./*.js"],
       env: {
         commonjs: true,
         node: true,
+      },
+      parser: "@babel/eslint-parser",
+      parserOptions: {
+        requireConfigFile: false,
+        babelOptions: {
+          plugins: ["@babel/plugin-syntax-import-assertions"],
+        },
       },
     },
     {

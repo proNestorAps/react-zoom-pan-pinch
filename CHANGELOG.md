@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Version 2.4.5
+
+- Upgrade to from Rollup 2 to 3.
+
 ## Version 2.4.4
 
 - Improve the argument types for the Storybook stories, so that they have default values and the correct controls.
