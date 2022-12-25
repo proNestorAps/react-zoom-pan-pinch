@@ -1,11 +1,11 @@
 import { Meta, Story, ArgsTable, Canvas } from "@storybook/addon-docs/blocks";
 import { action } from "@storybook/addon-actions";
-import { TransformWrapper } from "../../../components/transform-wrapper";
-import { TransformComponent } from "../../../components/transform-component";
-import { argsTypes } from "../../types/args.types.ts";
-import { normalizeArgs, Controls } from "../../utils";
+import { TransformWrapper } from "../../components/transform-wrapper";
+import { TransformComponent } from "../../components/transform-component";
+import { argsTypes } from "../types/args.types.ts";
+import { normalizeArgs, Controls } from "../utils";
 
-import exampleImg from "../../assets/medium-image.jpg";
+import exampleImg from "../assets/medium-image.jpg";
 
 export const Template = (args) => (
   <TransformWrapper {...normalizeArgs(args)}>
