@@ -58,7 +58,10 @@ export const handlePanningSetup = (
   const x = event.clientX;
   const y = event.clientY;
 
-  contextInstance.startCoords = { x: x - positionX, y: y - positionY };
+  contextInstance.startCoords = {
+    x: x - positionX,
+    y: y - positionY,
+  };
 };
 
 export const handleTouchPanningSetup = (
@@ -75,9 +78,13 @@ export const handleTouchPanningSetup = (
   if (oneFingerTouch) {
     const x = touches[0].clientX;
     const y = touches[0].clientY;
-    contextInstance.startCoords = { x: x - positionX, y: y - positionY };
+    contextInstance.startCoords = {
+      x: x - positionX,
+      y: y - positionY,
+    };
   }
 };
+
 export function handlePanToBounds(
   contextInstance: ReactZoomPanPinchContext,
 ): Omit<ReactZoomPanPinchState, "previousScale"> | undefined {
@@ -182,7 +189,10 @@ export const getPanningClientPosition = (
   const { positionX, positionY } = transformState;
 
   if (startCoords === null) {
-    return { x: positionX, y: positionY };
+    return {
+      x: positionX,
+      y: positionY,
+    };
   }
 
   const mouseX = clientX - startCoords.x;
@@ -190,7 +200,10 @@ export const getPanningClientPosition = (
   const newPositionX = lockAxisX ? positionX : mouseX;
   const newPositionY = lockAxisY ? positionY : mouseY;
 
-  return { x: newPositionX, y: newPositionY };
+  return {
+    x: newPositionX,
+    y: newPositionY,
+  };
 };
 
 export const getPaddingValue = (
