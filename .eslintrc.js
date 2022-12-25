@@ -35,10 +35,17 @@ module.exports = {
   overrides: [
     {
       // Rules that apply to JavaScript files in the root folder.
-      files: ["./*.js"],
+      files: ["./*.mjs", "./*.js"],
       env: {
         commonjs: true,
         node: true,
+      },
+      parser: "@babel/eslint-parser",
+      parserOptions: {
+        requireConfigFile: false,
+        babelOptions: {
+          plugins: ["@babel/plugin-syntax-import-assertions"],
+        },
       },
     },
     {
