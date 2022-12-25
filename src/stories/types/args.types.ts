@@ -1,13 +1,29 @@
 import { initialSetup } from "../../constants/state.constants";
 
 export const argsTypes = {
-  wheel: {
+  "doubleClick": {
     table: {
       disable: true,
     },
   },
-  "wheel.step": {
-    defaultValue: initialSetup.wheel.step,
+  "doubleClick.disabled": {
+    defaultValue: initialSetup.doubleClick.disabled,
+    control: { type: "boolean" },
+    table: {
+      defaultValue: { summary: "false" },
+      type: { summary: "boolean" },
+    },
+  },
+  "doubleClick.excluded": {
+    defaultValue: initialSetup.doubleClick.excluded,
+    control: { type: "array" },
+    table: {
+      defaultValue: { summary: "" },
+      type: { summary: "array" },
+    },
+  },
+  "doubleClick.step": {
+    defaultValue: initialSetup.doubleClick.step,
     control: {
       type: "number",
       min: 0,
@@ -16,49 +32,17 @@ export const argsTypes = {
       defaultValue: { summary: "0" },
     },
   },
-  "wheel.disabled": {
-    defaultValue: initialSetup.wheel.disabled,
-    control: { type: "boolean" },
+  "panning": {
     table: {
-      defaultValue: { summary: "false" },
-      type: { summary: "boolean" },
+      disable: true,
     },
   },
-  "wheel.wheelDisabled": {
-    defaultValue: initialSetup.wheel.wheelDisabled,
-    control: { type: "boolean" },
-    table: {
-      defaultValue: { summary: "false" },
-      type: { summary: "boolean" },
-    },
-  },
-  "wheel.touchPadDisabled": {
-    defaultValue: initialSetup.wheel.touchPadDisabled,
-    control: { type: "boolean" },
-    table: {
-      defaultValue: { summary: "false" },
-      type: { summary: "boolean" },
-    },
-  },
-  "wheel.activationKeys": {
-    defaultValue: initialSetup.wheel.activationKeys,
+  "panning.activationKeys": {
+    defaultValue: initialSetup.panning.activationKeys,
     control: { type: "text" },
     table: {
       defaultValue: { summary: "" },
       type: { summary: "string" },
-    },
-  },
-  "wheel.excluded": {
-    defaultValue: initialSetup.wheel.excluded,
-    control: { type: "array" },
-    table: {
-      defaultValue: { summary: "" },
-      type: { summary: "array" },
-    },
-  },
-  panning: {
-    table: {
-      disable: true,
     },
   },
   "panning.disabled": {
@@ -69,12 +53,12 @@ export const argsTypes = {
       type: { summary: "boolean" },
     },
   },
-  "panning.velocityDisabled": {
-    defaultValue: initialSetup.panning.velocityDisabled,
-    control: { type: "boolean" },
+  "panning.excluded": {
+    defaultValue: initialSetup.panning.excluded,
+    control: { type: "array" },
     table: {
-      defaultValue: { summary: "false" },
-      type: { summary: "boolean" },
+      defaultValue: { summary: "" },
+      type: { summary: "array" },
     },
   },
   "panning.lockAxisX": {
@@ -93,35 +77,17 @@ export const argsTypes = {
       type: { summary: "boolean" },
     },
   },
-  "panning.activationKeys": {
-    defaultValue: initialSetup.panning.activationKeys,
-    control: { type: "text" },
+  "panning.velocityDisabled": {
+    defaultValue: initialSetup.panning.velocityDisabled,
+    control: { type: "boolean" },
     table: {
-      defaultValue: { summary: "" },
-      type: { summary: "string" },
+      defaultValue: { summary: "false" },
+      type: { summary: "boolean" },
     },
   },
-  "panning.excluded": {
-    defaultValue: initialSetup.panning.excluded,
-    control: { type: "array" },
-    table: {
-      defaultValue: { summary: "" },
-      type: { summary: "array" },
-    },
-  },
-  pinch: {
+  "pinch": {
     table: {
       disable: true,
-    },
-  },
-  "pinch.step": {
-    defaultValue: initialSetup.pinch.step,
-    control: {
-      type: "number",
-      min: 0,
-    },
-    table: {
-      defaultValue: { summary: "0" },
     },
   },
   "pinch.disabled": {
@@ -140,13 +106,8 @@ export const argsTypes = {
       type: { summary: "array" },
     },
   },
-  doubleClick: {
-    table: {
-      disable: true,
-    },
-  },
-  "doubleClick.step": {
-    defaultValue: initialSetup.doubleClick.step,
+  "pinch.step": {
+    defaultValue: initialSetup.pinch.step,
     control: {
       type: "number",
       min: 0,
@@ -155,20 +116,59 @@ export const argsTypes = {
       defaultValue: { summary: "0" },
     },
   },
-  "doubleClick.disabled": {
-    defaultValue: initialSetup.doubleClick.disabled,
+  "wheel": {
+    table: {
+      disable: true,
+    },
+  },
+  "wheel.activationKeys": {
+    defaultValue: initialSetup.wheel.activationKeys,
+    control: { type: "text" },
+    table: {
+      defaultValue: { summary: "" },
+      type: { summary: "string" },
+    },
+  },
+  "wheel.disabled": {
+    defaultValue: initialSetup.wheel.disabled,
     control: { type: "boolean" },
     table: {
       defaultValue: { summary: "false" },
       type: { summary: "boolean" },
     },
   },
-  "doubleClick.excluded": {
-    defaultValue: initialSetup.doubleClick.excluded,
+  "wheel.excluded": {
+    defaultValue: initialSetup.wheel.excluded,
     control: { type: "array" },
     table: {
       defaultValue: { summary: "" },
       type: { summary: "array" },
+    },
+  },
+  "wheel.step": {
+    defaultValue: initialSetup.wheel.step,
+    control: {
+      type: "number",
+      min: 0,
+    },
+    table: {
+      defaultValue: { summary: "0" },
+    },
+  },
+  "wheel.touchPadDisabled": {
+    defaultValue: initialSetup.wheel.touchPadDisabled,
+    control: { type: "boolean" },
+    table: {
+      defaultValue: { summary: "false" },
+      type: { summary: "boolean" },
+    },
+  },
+  "wheel.wheelDisabled": {
+    defaultValue: initialSetup.wheel.wheelDisabled,
+    control: { type: "boolean" },
+    table: {
+      defaultValue: { summary: "false" },
+      type: { summary: "boolean" },
     },
   },
 };
