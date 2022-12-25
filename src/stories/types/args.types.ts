@@ -1,6 +1,18 @@
 import { initialSetup } from "../../constants/state.constants";
 
 export const argsTypes = {
+  "alignmentAnimation": {
+    defaultValue: initialSetup.alignmentAnimation,
+  },
+  "centerOnInit": {
+    defaultValue: initialSetup.centerOnInit,
+  },
+  "centerZoomedOut": {
+    defaultValue: initialSetup.centerZoomedOut,
+  },
+  "disabled": {
+    defaultValue: initialSetup.disabled,
+  },
   "doubleClick": {
     table: {
       disable: true,
@@ -32,6 +44,63 @@ export const argsTypes = {
       defaultValue: { summary: "0" },
     },
   },
+  "initialScale": {
+    defaultValue: null,
+    control: {
+      type: "number",
+    },
+  },
+  "initialPositionX": {
+    defaultValue: null,
+    control: {
+      type: "number",
+    },
+  },
+  "initialPositionY": {
+    defaultValue: null,
+    control: {
+      type: "number",
+    },
+  },
+  "limitToBounds": {
+    defaultValue: initialSetup.limitToBounds,
+  },
+  "maxPositionX": {
+    defaultValue: initialSetup.maxPositionX,
+    control: {
+      type: "number",
+    },
+  },
+  "maxPositionY": {
+    defaultValue: initialSetup.maxPositionX,
+    control: {
+      type: "number",
+    },
+  },
+  "maxScale": {
+    defaultValue: initialSetup.maxScale,
+    control: {
+      type: "number",
+    },
+  },
+  "minPositionX": {
+    defaultValue: initialSetup.minPositionX,
+    control: {
+      type: "number",
+    },
+  },
+  "minPositionY": {
+    defaultValue: initialSetup.minPositionY,
+    control: {
+      type: "number",
+    },
+  },
+  "minScale": {
+    defaultValue: initialSetup.minScale,
+    control: {
+      type: "number",
+    },
+  },
   "panning": {
     table: {
       disable: true,
@@ -39,7 +108,7 @@ export const argsTypes = {
   },
   "panning.activationKeys": {
     defaultValue: initialSetup.panning.activationKeys,
-    control: { type: "text" },
+    control: { type: "array" },
     table: {
       defaultValue: { summary: "" },
       type: { summary: "string" },
@@ -116,6 +185,9 @@ export const argsTypes = {
       defaultValue: { summary: "0" },
     },
   },
+  "velocityAnimation": {
+    defaultValue: initialSetup.velocityAnimation,
+  },
   "wheel": {
     table: {
       disable: true,
@@ -123,7 +195,7 @@ export const argsTypes = {
   },
   "wheel.activationKeys": {
     defaultValue: initialSetup.wheel.activationKeys,
-    control: { type: "text" },
+    control: { type: "array" },
     table: {
       defaultValue: { summary: "" },
       type: { summary: "string" },
@@ -171,31 +243,7 @@ export const argsTypes = {
       type: { summary: "boolean" },
     },
   },
+  "zoomAnimation": {
+    defaultValue: initialSetup.zoomAnimation,
+  },
 };
-// doubleClick: {
-//   disabled: false,
-//   step: 20,
-//   mode: "zoomIn",
-//   animation: true,
-//   animationType: "easeOut",
-//   animationTime: 200,
-// },
-// zoomAnimation: {
-//   disabled: false,
-//   size: 0.4,
-//   animationTime: 200,
-//   animationType: "easeOut",
-// },
-// alignmentAnimation: {
-//   disabled: false,
-//   size: 30,
-//   animationTime: 200,
-//   animationType: "easeOut",
-// },
-// velocityAnimation: {
-//   disabled: false,
-//   sensitivity: 1,
-//   animationTime: 600,
-//   animationType: "easeOut",
-//   equalToMove: true,
-// },
