@@ -1,3 +1,4 @@
 {
+  "quoteProps": "consistent",
   "trailingComma": "all"
 }

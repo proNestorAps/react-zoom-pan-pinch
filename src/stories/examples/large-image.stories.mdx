@@ -1,11 +1,11 @@
 import { Meta, Story, ArgsTable, Canvas } from "@storybook/addon-docs/blocks";
 import { action } from "@storybook/addon-actions";
-import { TransformWrapper } from "../../../components/transform-wrapper";
-import { TransformComponent } from "../../../components/transform-component";
-import { argsTypes } from "../../types/args.types.ts";
-import { normalizeArgs, Controls } from "../../utils";
+import { TransformWrapper } from "../../components/transform-wrapper";
+import { TransformComponent } from "../../components/transform-component";
+import { argsTypes } from "../types/args.types.ts";
+import { normalizeArgs, Controls } from "../utils";
 
-import exampleImg from "../../assets/big-image.jpeg";
+import exampleImg from "../assets/large-image.jpeg";
 
 export const Template = (args) => (
   <TransformWrapper {...normalizeArgs(args)}>
@@ -23,21 +23,21 @@ export const Template = (args) => (
 );
 
 <Meta
-  title="Examples/Big Image"
+  title="Examples/Large Image"
   component={TransformWrapper}
   argTypes={argsTypes}
 />
 
-# Big Image
+# Large Image
 
 <br />
 
 ### Preview:
 
 <Canvas>
-  <Story name="Big Image">{(args) => <Template {...args} />}</Story>
+  <Story name="Large Image">{(args) => <Template {...args} />}</Story>
 </Canvas>
 
 ## Component API
 
-<ArgsTable story="Big Image" />
+<ArgsTable story="Large Image" />

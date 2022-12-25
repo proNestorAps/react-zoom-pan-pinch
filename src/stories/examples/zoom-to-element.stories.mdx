@@ -1,10 +1,8 @@
 import { Meta, Story, ArgsTable, Canvas } from "@storybook/addon-docs/blocks";
 import { action } from "@storybook/addon-actions";
-import { TransformWrapper } from "../../../components/transform-wrapper";
-import { argsTypes } from "../../types/args.types";
-import { Example } from "./example";
-
-export const Template = (args) => <Example {...args} />;
+import { TransformWrapper } from "../../components/transform-wrapper";
+import { argsTypes } from "../types/args.types";
+import { ZoomToElementTemplate } from "./zoom-to-element-template";
 
 <Meta
   title="Examples/Zoom To Element"
@@ -19,7 +17,9 @@ export const Template = (args) => <Example {...args} />;
 ### Preview:
 
 <Canvas>
-  <Story name="Zoom To Element">{(args) => <Template {...args} />}</Story>
+  <Story name="Zoom To Element">
+    {(args) => <ZoomToElementTemplate {...args} />}
+  </Story>
 </Canvas>
 
 ## Component API

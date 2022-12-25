@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Version 2.4.4
+
+- Improve the argument types for the Storybook stories, so that they have default values and the correct controls.
+- Update dependencies.
+
 ## Version 2.4.3
 
 - Include the changelog and the readme in the package.

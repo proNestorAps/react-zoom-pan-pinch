@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { TransformComponent } from "../../../components/transform-component";
-import { TransformWrapper } from "../../../components/transform-wrapper";
-import { normalizeArgs } from "../../utils";
+import { TransformComponent } from "../../components/transform-component";
+import { TransformWrapper } from "../../components/transform-wrapper";
+import { normalizeArgs } from "../utils";
 
-export const Example: React.FC<any> = (args: any) => {
+export const RenderingContentTemplate: React.FC<any> = (args: any) => {
   const [firstBlock, setFirstBlock] = useState(false);
   const [secondBlock, setSecondBlock] = useState(false);
   const [thirdBlock, setThirdBlock] = useState(false);
