@@ -1,10 +1,10 @@
 import React from "react";
-import { TransformComponent } from "../../../components/transform-component";
-import { TransformWrapper } from "../../../components/transform-wrapper";
-import { normalizeArgs } from "../../utils";
-import styles from "../../utils/styles.module.css";
+import { TransformComponent } from "../../components/transform-component";
+import { TransformWrapper } from "../../components/transform-wrapper";
+import { normalizeArgs } from "../utils";
+import styles from "../utils/styles.module.css";
 
-export const Example: React.FC<any> = (args: any) => {
+export const ZoomToElementTemplate: React.FC<any> = (args: any) => {
   return (
     <TransformWrapper {...normalizeArgs(args)}>
       {({ zoomToElement, resetTransform }) => (
